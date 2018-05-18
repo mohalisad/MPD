@@ -36,4 +36,5 @@ int Random::generate(){
 }
 int Random::getState(){
   state=(state+1)%MAX_STATE;
+  return state;
 }
