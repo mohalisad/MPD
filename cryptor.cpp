@@ -4,7 +4,7 @@
 
 #define _KEY "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?"
 #define SALT_LENGTH 16
-#define MULTIPLY 1.8
+#define MULTIPLY 1.5
 #define DISORDER_RATE 5
 
 Cryptor::Cryptor():r(Date::now()){}

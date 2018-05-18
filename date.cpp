@@ -1,7 +1,12 @@
 #include <time.h>
 #include "date.h"
 #include "strlib.h"
+#include "strtoken.h"
 
+void Date::calcDayOfWeek(){
+  int monthDays=(month-1)*31-(month<8?0:month-7);
+  dayOfWeek=(year+year/4+day+monthDays)%7;
+}
 Date::Date(){
   time_t now = time(0);
   int dif=0;
@@ -17,12 +22,17 @@ Date::Date(){
   dayOfWeek=5+now%7;
 }
 Date::Date(int y,int m,int d){
-  int monthDays=0;
   year=y;
   month=m;
   day=d;
-  monthDays=(month-1)*31-(month<8?0:month-7);
-  dayOfWeek=(year+year/4+day)%7;
+  calcDayOfWeek();
+}
+Date::Date(std::string input){
+  StringTokenizer tokens(input,"/");
+  year=parseInt(tokens[0]);
+  month=parseInt(tokens[1]);
+  day=parseInt(tokens[2]);
+  calcDayOfWeek();
 }
 void Date::next(){
   day++;
@@ -74,11 +84,14 @@ std::string Date::toString(){
   return retu;
 }
 std::string Date::now(){
-  time_t now = time(0);
   Date d;
+  return d.toString()+" "+Date::clock();
+}
+std::string Date::clock(){
+  time_t now = time(0);
   int second,minute,hour;
   second=now%60;
   minute=(now/60)%60;
   hour=(now/3600)%24;
-  return d.toString()+" "+intToString(hour)+":"+intToString(minute)+":"+intToString(second);
+  return intToString(hour)+":"+intToString(minute)+":"+intToString(second);
 }
