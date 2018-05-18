@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
-  std::cout << encrypt("ssal","sasa") << '\n';
+  Cryptor c;
+  std::cout << c.encrypt("ssal","sasa") << '\n';
 
 }
