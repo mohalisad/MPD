@@ -78,10 +78,12 @@ std::string Cryptor::encrypt(std::string input,std::string key){
       pointer++;
     }
   }
+  /*
   for(int j=1;j<256;j=j*2){
     chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,0);
     pointer++;
   }
+  */
   for(;pointer<length;pointer++){
     chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,r.generate()%2);
   }
@@ -98,17 +100,17 @@ std::string Cryptor::decrypt(std::string input,std::string key){
   int length;
   std::string salt=subFromEnd(input,12);
   input = subFromBeg(input,input.size()-12);
-  int length=input.size();
+  int length=input.size()*6;
   int *disorderArray,*disorderMoves,*chars;
   disorderMoves=makeDisorderMoves(length,key+salt);
   disorderArray=makeDisorderArray(length,disorderMoves);
   chars=new int[length/6];
   for(int i=0;i<length/6;i++){
-    chars[i]=0;
+    chars[i]=getPossition(input[i]);
   }
   int pointer=0;
   for(unsigned i=0;i<input.size();i++){
-    temp=0;
+    chars[i]
     for(int j=0;j<8;j++){
       temp=bitSet(temp,j,bitGet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6));
       pointer++;
