@@ -1,11 +1,9 @@
 #include <iostream>
-#include "cryptor.h"
+#include "strlib.h"
 
 using namespace std;
 
 int main()
 {
-  Cryptor c;
-  std::cout << c.encrypt("ssal","sasa") << '\n';
-
+  std::cout << subFromBeg("salam",3) << '\n';
 }

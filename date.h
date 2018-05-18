@@ -11,6 +11,8 @@ private:
   int dayOfWeek;
 public:
   Date();
+  Date(int y,int m,int d);
+  void prev();
   void next();
   std::string toString();
   static std::string now();

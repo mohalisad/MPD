@@ -4,7 +4,7 @@
 
 #define _KEY "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?"
 #define SALT_LENGTH 16
-#define MULTIPLY 1.5
+#define MULTIPLY 1.8
 #define DISORDER_RATE 5
 
 Cryptor::Cryptor():r(Date::now()){}
@@ -49,6 +49,16 @@ int Cryptor::bitSet(int input,int position,bool toWhat){
     return input&(63-pow2);
   }
 }
+bool Cryptor::bitGet(int input,int position){
+  int pow2=1;
+  for(int i=0;i<position;i++)pow2*=2;
+  return input&pow2;
+}
+int Cryptor::getPossition(char input){
+  for(int i=0;i<64;i++){
+    if(_KEY[i]==input)return input;
+  }
+}
 std::string Cryptor::encrypt(std::string input,std::string key){
   std::string retu;
   int length=MULTIPLY*input.size()*8;
@@ -68,9 +78,44 @@ std::string Cryptor::encrypt(std::string input,std::string key){
       pointer++;
     }
   }
-  Random r(Date::now());
+  for(int j=1;j<256;j=j*2){
+    chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,0);
+    pointer++;
+  }
   for(;pointer<length;pointer++){
     chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,r.generate()%2);
+  }
+  for(int i=0;i<length/6;i++){
+    retu+=_KEY[chars[i]];
+  }
+  delete disorderArray;
+  delete disorderMoves;
+  return retu+salt;
+}
+std::string Cryptor::decrypt(std::string input,std::string key){
+  std::string ret;
+  char temp;
+  int length;
+  std::string salt=subFromEnd(input,12);
+  input = subFromBeg(input,input.size()-12);
+  int length=input.size();
+  int *disorderArray,*disorderMoves,*chars;
+  disorderMoves=makeDisorderMoves(length,key+salt);
+  disorderArray=makeDisorderArray(length,disorderMoves);
+  chars=new int[length/6];
+  for(int i=0;i<length/6;i++){
+    chars[i]=0;
+  }
+  int pointer=0;
+  for(unsigned i=0;i<input.size();i++){
+    temp=0;
+    for(int j=0;j<8;j++){
+      temp=bitSet(temp,j,bitGet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6));
+      pointer++;
+    }
+    if(temp==0)break;
+    ret+=charToString(temp);
+    return ret;
   }
   for(int i=0;i<length/6;i++){
     retu+=_KEY[chars[i]];

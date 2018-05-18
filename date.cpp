@@ -16,6 +16,11 @@ Date::Date(){
   }
   dayOfWeek=5+now%7;
 }
+Date::Date(int y,int m,int d){
+  year=y;
+  month=m;
+  day=d;
+}
 void Date::next(){
   day++;
   if(month<7){
@@ -41,6 +46,24 @@ void Date::next(){
     year++;
   }
   dayOfWeek=(dayOfWeek+1)%7;
+}
+void Date::prev(){
+  day--;
+  if(day==0){
+    day=31;
+    month--;
+    if(month==0){
+      month=12;
+      year--;
+    }
+    if(month>6){
+      day--;
+    }
+    if(month==12&&year%4!=3){
+      day--;
+    }
+    dayOfWeek=(dayOfWeek-1)%7;
+  }
 }
 std::string Date::toString(){
   std::string retu;
