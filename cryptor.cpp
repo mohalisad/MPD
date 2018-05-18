@@ -58,6 +58,7 @@ int Cryptor::getPossition(char input){
   for(int i=0;i<64;i++){
     if(_KEY[i]==input)return i;
   }
+  return -1;
 }
 std::string Cryptor::encrypt(std::string input,std::string key){
   std::string retu,salt;
