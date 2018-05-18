@@ -1,3 +1,4 @@
+#include <iostream>
 #include "cryptor.h"
 #include "date.h"
 #include "strlib.h"
@@ -56,34 +57,31 @@ bool Cryptor::bitGet(int input,int position){
 }
 int Cryptor::getPossition(char input){
   for(int i=0;i<64;i++){
-    if(_KEY[i]==input)return input;
+    if(_KEY[i]==input)return i;
   }
 }
 std::string Cryptor::encrypt(std::string input,std::string key){
-  std::string retu;
-  int length=MULTIPLY*input.size()*8;
-  length=length+6-length%6;
+  std::string retu,salt;
   int *disorderArray,*disorderMoves,*chars;
-  std::string salt=randomString(SALT_LENGTH);
+  int pointer=0,length=MULTIPLY*input.size()*8;
+  length=length+6-length%6;
+  salt =randomString(SALT_LENGTH);
   disorderMoves=makeDisorderMoves(length,key+salt);
   disorderArray=makeDisorderArray(length,disorderMoves);
   chars=new int[length/6];
   for(int i=0;i<length/6;i++){
     chars[i]=0;
   }
-  int pointer=0;
   for(unsigned i=0;i<input.size();i++){
     for(int j=1;j<256;j=j*2){
       chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,input[i]&j);
       pointer++;
     }
   }
-  /*
   for(int j=1;j<256;j=j*2){
     chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,0);
     pointer++;
   }
-  */
   for(;pointer<length;pointer++){
     chars[disorderArray[pointer]/6]=bitSet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6,r.generate()%2);
   }
@@ -95,13 +93,13 @@ std::string Cryptor::encrypt(std::string input,std::string key){
   return retu+salt;
 }
 std::string Cryptor::decrypt(std::string input,std::string key){
+  int *disorderArray,*disorderMoves,*chars;
   std::string ret;
   char temp;
   int length;
-  std::string salt=subFromEnd(input,12);
-  input = subFromBeg(input,input.size()-12);
-  int length=input.size()*6;
-  int *disorderArray,*disorderMoves,*chars;
+  std::string salt=subFromEnd(input,SALT_LENGTH);
+  input = subFromBeg(input,input.size()-SALT_LENGTH);
+  length=input.size()*6;
   disorderMoves=makeDisorderMoves(length,key+salt);
   disorderArray=makeDisorderArray(length,disorderMoves);
   chars=new int[length/6];
@@ -109,20 +107,15 @@ std::string Cryptor::decrypt(std::string input,std::string key){
     chars[i]=getPossition(input[i]);
   }
   int pointer=0;
-  for(unsigned i=0;i<input.size();i++){
-    chars[i]
+  while(pointer<length){
+    temp=0;
     for(int j=0;j<8;j++){
       temp=bitSet(temp,j,bitGet(chars[disorderArray[pointer]/6],disorderArray[pointer]%6));
       pointer++;
+      if(pointer==length)break;
     }
     if(temp==0)break;
     ret+=charToString(temp);
-    return ret;
   }
-  for(int i=0;i<length/6;i++){
-    retu+=_KEY[chars[i]];
-  }
-  delete disorderArray;
-  delete disorderMoves;
-  return retu+salt;
+  return ret;
 }
