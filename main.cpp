@@ -1,13 +1,12 @@
 #include <iostream>
-#include "cryptor.h"
+#include "date.h"
 
 using namespace std;
 
 int main()
 {
-  Cryptor c;
-  std::string t;
-  t=c.encrypt("salam","MrTux:159357");
-  std::cout << t << '\n';
-  std::cout << c.decrypt(t,"MrTux:15935")<<endl;
+  int y;
+  cin>>y;
+  Date d(y,1,1);
+  std::cout << d.dayOfWeek << '\n';
 }

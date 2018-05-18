@@ -17,9 +17,12 @@ Date::Date(){
   dayOfWeek=5+now%7;
 }
 Date::Date(int y,int m,int d){
+  int monthDays=0;
   year=y;
   month=m;
   day=d;
+  monthDays=(month-1)*31-(month<8?0:month-7);
+  dayOfWeek=(year+year/4+day)%7;
 }
 void Date::next(){
   day++;

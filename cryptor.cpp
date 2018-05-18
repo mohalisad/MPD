@@ -1,4 +1,3 @@
-#include <iostream>
 #include "cryptor.h"
 #include "date.h"
 #include "strlib.h"
