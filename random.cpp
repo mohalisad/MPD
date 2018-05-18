@@ -1,5 +1,4 @@
 #include <sstream>
-#include <iostream>
 #include "random.h"
 
 #define LENGTH 8
