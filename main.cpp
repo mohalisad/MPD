@@ -5,5 +5,6 @@ using namespace std;
 
 int main()
 {
-  encrypt("ssal","sasa");
+  std::cout << encrypt("ssal","sasa") << '\n';
+
 }

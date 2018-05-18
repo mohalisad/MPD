@@ -19,13 +19,14 @@ int Random::generate(){
   for (int i=0;i<LENGTH;i++){
     arr[i]=0;
   }
-  for (int i=0;i<256;i++){
+  for (int i=0;i<64;i++){
     arr[i%LENGTH]+=hash[i]%10;
   }
-  for (int i=0;i<LENGTH;i ++){
+  for (int i=0;i<LENGTH;i++){
     ret=ret*10+arr[i];
   }
   hash=sha256(hash+intToString(getState())+intToString(ret));
+
   return ret;
 }
 int Random::getState(){
