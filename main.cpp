@@ -1,15 +1,21 @@
 #include <iostream>
-#include "sha256.h"
+#include "random.h"
 
-using std::string;
-using std::cout;
-using std::endl;
+using namespace std;
 
 int main(int argc, char *argv[])
 {
-    string input = "grape";
-    string output1 = sha256(input);
-
-    cout << "sha256('"<< input << "'):" << output1 << endl;
-    return 0;
+    string input;
+    cin>>input;
+    Random r(input);
+    int t[6];
+    for(int i=0;i<6;i++){
+      t[i]=0;
+    }
+    for(int i=0;i<10000;i++){
+      t[r.generate()%6]++;
+    }
+    for(int i=0;i<6;i++){
+      cout<<t[i]<<endl;
+    }
 }
