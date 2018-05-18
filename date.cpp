@@ -1,14 +1,11 @@
-#include <iostream>
 #include <time.h>
 #include "date.h"
+#include "strlib.h"
+
 Date::Date(){
   time_t now = time(0);
   int dif=0;
-  int second,minute,hour;
-  second=now%60;
-  minute=(now/60)%60;
   now=now/3600;
-  hour=now%24;
   now=now/24;
   dif=(now%(365*4+1));
   year=(now/(365*4+1))*4+1348;
@@ -18,8 +15,6 @@ Date::Date(){
     next();
   }
   dayOfWeek=5+now%7;
-  std::cout <<dayOfWeek<<'\n'<< year << '/'<<month<<'/'<<day<<std::endl;
-  std::cout << hour << ':'<<minute<<':'<<second<<std::endl;
 }
 void Date::next(){
   day++;
@@ -46,4 +41,18 @@ void Date::next(){
     year++;
   }
   dayOfWeek=(dayOfWeek+1)%7;
+}
+std::string Date::toString(){
+  std::string retu;
+  retu= intToString(year) + "/"+intToString(month)+"/"+intToString(day);
+  return retu;
+}
+std::string Date::now(){
+  time_t now = time(0);
+  Date d;
+  int second,minute,hour;
+  second=now%60;
+  minute=(now/60)%60;
+  hour=(now/3600)%24;
+  return d.toString()+" "+intToString(hour)+":"+intToString(minute)+":"+intToString(second);
 }

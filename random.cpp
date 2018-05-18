@@ -1,5 +1,5 @@
-#include <sstream>
 #include "random.h"
+#include "strlib.h"
 
 #define LENGTH 8
 #define MAX_STATE 100000
@@ -7,12 +7,6 @@
 char toUpper(char input){
   if(input>95)return input-32;
   else return input;
-}
-std::string intToString(int input){
-    std::ostringstream myCustomStreamString;
-    myCustomStreamString<<input;
-
-    return myCustomStreamString.str();
 }
 
 Random::Random(std::string input){

@@ -1,9 +1,9 @@
 #include <iostream>
-#include "date.h"
+#include "cryptor.h"
 
 using namespace std;
 
 int main()
 {
-  Date d;
+  encrypt("ssal","sasa");
 }

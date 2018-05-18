@@ -1,5 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
+
+#include <string>
+
 class Date{
 private:
   int year;
@@ -9,5 +12,7 @@ private:
 public:
   Date();
   void next();
+  std::string toString();
+  static std::string now();
 };
 #endif
