@@ -2,7 +2,7 @@
 #include "cryptor.h"
 #include "strlib.h"
 
-#define KEY "entry_key"
+#define KEY "entry_key1234"
 
 Entry::Entry(int num,Date *d,std::string t){
   number = num;
