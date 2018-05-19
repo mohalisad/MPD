@@ -117,5 +117,7 @@ std::string Cryptor::decrypt(std::string input,std::string key){
     if(temp==0)break;
     ret+=charToString(temp);
   }
+  delete disorderArray;
+  delete disorderMoves;
   return ret;
 }
