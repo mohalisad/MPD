@@ -1,7 +1,7 @@
 #include "entry.h"
 #include "cryptor.h"
 #include "strlib.h"
-#include "strtoken.cpp"
+#include "strtoken.h"
 
 #define KEY "entry_key1234"
 
