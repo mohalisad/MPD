@@ -1,6 +1,7 @@
 #include "random.h"
 #include "strlib.h"
 
+#define BASE 10
 #define LENGTH 8
 #define MAX_STATE 100000
 
@@ -20,10 +21,10 @@ int Random::generate(){
     arr[i]=0;
   }
   for (int i=0;i<64;i++){
-    arr[i%LENGTH]+=hash[i]%10;
+    arr[i%LENGTH]+=hash[i]%BASE;
   }
   for (int i=0;i<LENGTH;i++){
-    ret=ret*10+arr[i];
+    ret=ret*BASE+arr[i];
   }
   hash=sha256(hash+intToString(getState())+intToString(ret));
 
