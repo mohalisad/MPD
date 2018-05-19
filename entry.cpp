@@ -1,6 +1,7 @@
 #include "entry.h"
 #include "cryptor.h"
 #include "strlib.h"
+#include "strtoken.cpp"
 
 #define KEY "entry_key1234"
 
@@ -12,12 +13,13 @@ Entry::Entry(int num,Date *d,std::string t){
 
 Entry::Entry(std::string input){
   Cryptor c;
-  date=new Date(getTag(input,"date"));
-  number=parseInt(getTag(input,"count"));
-  text=c.decrypt(getTag(input,"text"),KEY);
+  StringTokenizer tokens(input," ");
+  number=parseInt(tokens[0]);
+  date=new Date(tokens[1]);
+  text=c.decrypt(tokens[2],KEY);
 }
 
 std::string Entry::toString(){
   Cryptor c;
-  return "<count>"+intToString(number)+"</count><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>";
+  return intToString(number)+" "+date->toString()+" "+c.encrypt(text,KEY);
 }
