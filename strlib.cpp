@@ -1,4 +1,5 @@
 #include <sstream>
+#include <fstream>
 #include "strlib.h"
 #include "exception.h"
 
@@ -56,4 +57,17 @@ std::string getTag(std::string input,std::string tag){
   ret=subFromEnd(input,input.size()-findSubStr(input,"<"+tag+">")-tag.size()-2);
   ret=subFromBeg(ret,findSubStr(ret,"</"+tag+">"));
   return ret;
+}
+std::string readAllFromFile(std::string address){
+  std::string line,retu;
+  std::ifstream ifs(address.c_str());
+  while (std::getline(ifs,line)) {
+    retu+=line+"\n";
+  }
+  return retu;
+}
+void writeInFile(std::string address,std::string text){
+  std::string line,retu;
+  std::ofstream ofs(address.c_str());
+  ofs<<text;
 }
