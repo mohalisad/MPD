@@ -1,9 +1,11 @@
-#include <iostream>
-#include "strlib.h"
+#include "mainwindow.h"
+#include <QApplication>
 
-using namespace std;
-
-int main()
+int main(int argc, char *argv[])
 {
-  writeInFile("d:\\aaa.h",readAllFromFile("d:\\diary.h"));
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file alias="naz.ttf">fonts/BNazanin.ttf</file>
+    </qresource>
+</RCC>
