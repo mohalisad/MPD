@@ -41,6 +41,13 @@
         <item>
          <widget class="QLineEdit" name="number"/>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>تکمیل خودکار</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -54,6 +61,31 @@
         </item>
         <item>
          <widget class="QLineEdit" name="date"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="dateBeforeButton">
+            <property name="text">
+             <string>قبل</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="dateNowButton">
+            <property name="text">
+             <string>الان</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="dateNextButton">
+            <property name="text">
+             <string>بعد</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>

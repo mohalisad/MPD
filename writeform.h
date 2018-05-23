@@ -23,6 +23,12 @@ private slots:
 
     void on_nextBut_clicked();
 
+    void on_dateNowButton_clicked();
+
+    void on_dateNextButton_clicked();
+
+    void on_dateBeforeButton_clicked();
+
 private:
     Ui::writeform *ui;
     Diary diary;

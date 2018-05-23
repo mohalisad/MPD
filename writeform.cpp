@@ -2,6 +2,7 @@
 #include "ui_writeform.h"
 #include "uiassist.h"
 #include "strlib.h"
+#include "date.h"
 
 writeform::writeform(QWidget *parent) :
     QWidget(parent),
@@ -32,4 +33,19 @@ void writeform::on_okBut_clicked()
 void writeform::on_nextBut_clicked()
 {
     diary.addEntry(ui->number->text().toInt(),new Date(ui->date->text().toStdString()),ui->textEdit->toPlainText().toStdString());
+}
+
+void writeform::on_dateNowButton_clicked()
+{
+    ui->date->setText(Date().toString().c_str());
+}
+
+void writeform::on_dateNextButton_clicked()
+{
+    ui->date->setText(Date(ui->date->text().toStdString()).next().toString().c_str());
+}
+
+void writeform::on_dateBeforeButton_clicked()
+{
+    ui->date->setText(Date(ui->date->text().toStdString()).prev().toString().c_str());
 }
