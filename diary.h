@@ -10,6 +10,8 @@ private:
   std::vector<Entry*> v;
 public:
   void readFromText(std::string input);
+  void addEntry(int num,Date *d,std::string t);
+  std::string getEncrypted();
 };
 
 #endif

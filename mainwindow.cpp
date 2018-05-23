@@ -4,6 +4,7 @@
 #include "qfontdatabase.h"
 #include "writeform.h"
 #include "uiassist.h"
+#include "entry.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_but2_clicked()
 {
+    Entry::setUserKey(ui->lineEdit->text().toStdString());
     writeform *wf=new writeform();
     wf->show();
     close();
