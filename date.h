@@ -9,13 +9,17 @@ private:
   int month;
   int day;
   int dayOfWeek;
+  Date clone();
   void calcDayOfWeek();
+  void setToNow(float timezone);
 public:
   Date();
   Date(int y,int m,int d);
   Date(std::string input);
-  void prev();
-  void next();
+  Date prev();
+  Date next();
+  void goPrev();
+  void goNext();
   std::string toString();
   static std::string now();
   static std::string clock();

@@ -3,12 +3,26 @@
 #include "strlib.h"
 #include "strtoken.h"
 
+time_t getLocalTime(float timezone){
+  time_t now = time(0);
+  now+=3600*timezone;
+  return now;
+}
+
+Date Date::clone(){
+  Date d;
+  d.dayOfWeek=dayOfWeek;
+  d.day=day;
+  d.month=month;
+  d.year=year;
+  return d;
+}
 void Date::calcDayOfWeek(){
   int monthDays=(month-1)*31-(month<8?0:month-7);
   dayOfWeek=(year+year/4+day+monthDays)%7;
 }
-Date::Date(){
-  time_t now = time(0);
+void Date::setToNow(float timezone){
+  time_t now = getLocalTime(timezone);
   int dif=0;
   now=now/3600;
   now=now/24;
@@ -17,9 +31,14 @@ Date::Date(){
   day=11;
   month=10;
   for(int i=0;i<dif;i++){
-    next();
+    goNext();
   }
   dayOfWeek=5+now%7;
+}
+
+Date::Date(){
+  setToNow(3.5);
+  if(month<7)setToNow(4.5);
 }
 Date::Date(int y,int m,int d){
   year=y;
@@ -34,7 +53,7 @@ Date::Date(std::string input){
   day=parseInt(tokens[2]);
   calcDayOfWeek();
 }
-void Date::next(){
+void Date::goNext(){
   day++;
   if(month<7){
     if(day>31){
@@ -60,7 +79,7 @@ void Date::next(){
   }
   dayOfWeek=(dayOfWeek+1)%7;
 }
-void Date::prev(){
+void Date::goPrev(){
   day--;
   if(day==0){
     day=31;
@@ -78,6 +97,16 @@ void Date::prev(){
     dayOfWeek=(dayOfWeek-1)%7;
   }
 }
+Date Date::prev(){
+  Date d=clone();
+  d.goPrev();
+  return d;
+}
+Date Date::next(){
+  Date d=clone();
+  d.goNext();
+  return d;
+}
 std::string Date::toString(){
   std::string retu;
   retu= intToString(year) + "/"+intToString(month)+"/"+intToString(day);
@@ -88,7 +117,7 @@ std::string Date::now(){
   return d.toString()+" "+Date::clock();
 }
 std::string Date::clock(){
-  time_t now = time(0);
+  time_t now = getLocalTime(Date().month<7?4.5:3.5);
   int second,minute,hour;
   second=now%60;
   minute=(now/60)%60;
