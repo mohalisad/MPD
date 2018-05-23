@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qfont.h"
 #include "qfontdatabase.h"
+#include "writeform.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,4 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_but2_clicked()
+{
+    writeform wf();
+    wf.show();
 }

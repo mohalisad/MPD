@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     random.cpp \
     sha256.cpp \
     strlib.cpp \
-    strtoken.cpp
+    strtoken.cpp \
+    writeform.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -33,9 +34,11 @@ HEADERS  += mainwindow.h \
     random.h \
     sha256.h \
     strlib.h \
-    strtoken.h
+    strtoken.h \
+    writeform.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    writeform.ui
 
 RESOURCES += \
     resources.qrc
