@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     sha256.cpp \
     strlib.cpp \
     strtoken.cpp \
-    writeform.cpp
+    writeform.cpp \
+    uiassist.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     sha256.h \
     strlib.h \
     strtoken.h \
-    writeform.h
+    writeform.h \
+    uiassist.h
 
 FORMS    += mainwindow.ui \
     writeform.ui

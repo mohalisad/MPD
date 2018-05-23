@@ -3,19 +3,17 @@
 #include "qfont.h"
 #include "qfontdatabase.h"
 #include "writeform.h"
+#include "uiassist.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QWidget::setFixedSize(200,180);
-
-    int id = QFontDatabase::addApplicationFont(":/fonts/naz.ttf");
-    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-    QFont naz(family,20);
-    ui->but1->setFont(naz);
-    ui->but2->setFont(naz);
+    QWidget::setFixedSize(200,140);
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    ui->but1->setFont(uiassist::yekan());
+    ui->but2->setFont(uiassist::yekan());
 }
 
 MainWindow::~MainWindow()
@@ -25,6 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_but2_clicked()
 {
-    writeform wf();
-    wf.show();
+    writeform *wf=new writeform();
+    wf->show();
+    close();
 }

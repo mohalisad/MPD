@@ -25,24 +25,14 @@
      <number>20</number>
     </property>
     <item>
-     <widget class="QPushButton" name="but2">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
+     <widget class="QPushButton" name="but1">
       <property name="text">
        <string>خواندن</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="but1">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
+     <widget class="QPushButton" name="but2">
       <property name="text">
        <string>نوشتن</string>
       </property>
