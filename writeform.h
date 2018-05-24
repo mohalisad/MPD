@@ -29,6 +29,8 @@ private slots:
 
     void on_dateBeforeButton_clicked();
 
+    void on_autoincbut_clicked();
+
 private:
     Ui::WriteForm *ui;
     Diary diary;

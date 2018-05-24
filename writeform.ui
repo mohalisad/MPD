@@ -42,7 +42,7 @@
          <widget class="QLineEdit" name="number"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="autoincbut">
           <property name="text">
            <string>تکمیل خودکار</string>
           </property>

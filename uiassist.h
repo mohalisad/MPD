@@ -3,12 +3,15 @@
 
 #include "qfont.h"
 
-class uiassist
+class UIAssist
 {
 private:
-    uiassist();
+    UIAssist();
+    static bool yekanSet;
+    static int yekanID;
 public:
     static QFont yekan();
+    static QString justify(QString input);
 };
 
 #endif // UIASSIST_H

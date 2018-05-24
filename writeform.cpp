@@ -9,10 +9,14 @@ WriteForm::WriteForm(QWidget *parent) :
     ui(new Ui::WriteForm)
 {
     ui->setupUi(this);
-    setFont(uiassist::yekan());
-    ui->groupBox->setFont(uiassist::yekan());
-    ui->groupBox_2->setFont(uiassist::yekan());
+    setFont(UIAssist::yekan());
+    ui->groupBox->setFont(UIAssist::yekan());
+    ui->groupBox_2->setFont(UIAssist::yekan());
     setLayoutDirection(Qt::RightToLeft);
+    ui->textEdit->setAlignment(Qt::AlignJustify);
+    ui->textEdit->setFont(UIAssist::yekan());
+
+    diary.readFromText(readAllFromFile("a.mpd"));
 }
 
 WriteForm::~WriteForm()
@@ -28,11 +32,15 @@ void WriteForm::on_cancelBut_clicked()
 void WriteForm::on_okBut_clicked()
 {
     writeInFile("a.mpd",diary.getEncrypted());
+    close();
 }
 
 void WriteForm::on_nextBut_clicked()
 {
     diary.addEntry(ui->number->text().toInt(),new Date(ui->date->text().toStdString()),ui->textEdit->toPlainText().toStdString());
+    on_dateNextButton_clicked();
+    on_autoincbut_clicked();
+    ui->textEdit->setText("");
 }
 
 void WriteForm::on_dateNowButton_clicked()
@@ -48,4 +56,9 @@ void WriteForm::on_dateNextButton_clicked()
 void WriteForm::on_dateBeforeButton_clicked()
 {
     ui->date->setText(Date(ui->date->text().toStdString()).prev().toString().c_str());
+}
+
+void WriteForm::on_autoincbut_clicked()
+{
+    ui->number->setText(QString::number(diary.size()+1));
 }

@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QWidget::setFixedSize(200,140);
     setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
-    ui->but1->setFont(uiassist::yekan());
-    ui->but2->setFont(uiassist::yekan());
+    ui->but1->setFont(UIAssist::yekan());
+    ui->but2->setFont(UIAssist::yekan());
 }
 
 MainWindow::~MainWindow()

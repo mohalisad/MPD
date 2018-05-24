@@ -11,9 +11,9 @@ ReadForm::ReadForm(QWidget *parent) :
     ui(new Ui::ReadForm)
 {
     ui->setupUi(this);
-    setFont(uiassist::yekan());
-    ui->groupBox->setFont(uiassist::yekan());
-    ui->groupBox_2->setFont(uiassist::yekan());
+    setFont(UIAssist::yekan());
+    ui->groupBox->setFont(UIAssist::yekan());
+    ui->groupBox_2->setFont(UIAssist::yekan());
     setLayoutDirection(Qt::RightToLeft);
 
     diary.readFromText(readAllFromFile("a.mpd"));
@@ -49,7 +49,7 @@ void ReadForm::refreshUI(){
     setButtonDisable();
     ui->date->setText(diary[index]->getDate().c_str());
     ui->number->setText(QString::number(diary[index]->getNumber()));
-    ui->textBrowser->setText(diary[index]->getText().c_str());
+    ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
 }
 
 void ReadForm::on_cancelBut_clicked()
