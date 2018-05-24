@@ -12,6 +12,8 @@ public:
   void readFromText(std::string input);
   void addEntry(int num,Date *d,std::string t);
   std::string getEncrypted();
+  Entry* operator[](int input);
+  std::vector<Entry*>::size_type size();
 };
 
 #endif

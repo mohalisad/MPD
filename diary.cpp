@@ -3,7 +3,7 @@
 
 void Diary::readFromText(std::string input){
   StringTokenizer tokens(input,"\n");
-  for(int i=0;i<input.size();i++){
+  for(int i=0;i<tokens.size();i++){
     v.push_back(new Entry(tokens[i]));
   }
 }
@@ -14,4 +14,11 @@ std::string Diary::getEncrypted(){
     std::string retu;
     for(int i=0;i<v.size();i++)retu+=v[i]->getHash();
     return retu;
+}
+Entry* Diary::operator[](int input){
+    return v[input];
+}
+
+std::vector<Entry*>::size_type Diary::size(){
+    return v.size();
 }

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     strlib.cpp \
     strtoken.cpp \
     writeform.cpp \
-    uiassist.cpp
+    uiassist.cpp \
+    readform.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -37,10 +38,12 @@ HEADERS  += mainwindow.h \
     strlib.h \
     strtoken.h \
     writeform.h \
-    uiassist.h
+    uiassist.h \
+    readform.h
 
 FORMS    += mainwindow.ui \
-    writeform.ui
+    writeform.ui \
+    readform.ui
 
 RESOURCES += \
     resources.qrc

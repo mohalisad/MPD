@@ -5,16 +5,16 @@
 #include "diary.h"
 
 namespace Ui {
-class writeform;
+class WriteForm;
 }
 
-class writeform : public QWidget
+class WriteForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit writeform(QWidget *parent = 0);
-    ~writeform();
+    explicit WriteForm(QWidget *parent = 0);
+    ~WriteForm();
 
 private slots:
     void on_cancelBut_clicked();
@@ -30,7 +30,7 @@ private slots:
     void on_dateBeforeButton_clicked();
 
 private:
-    Ui::writeform *ui;
+    Ui::WriteForm *ui;
     Diary diary;
 };
 

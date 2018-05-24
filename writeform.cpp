@@ -4,9 +4,9 @@
 #include "strlib.h"
 #include "date.h"
 
-writeform::writeform(QWidget *parent) :
+WriteForm::WriteForm(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::writeform)
+    ui(new Ui::WriteForm)
 {
     ui->setupUi(this);
     setFont(uiassist::yekan());
@@ -15,37 +15,37 @@ writeform::writeform(QWidget *parent) :
     setLayoutDirection(Qt::RightToLeft);
 }
 
-writeform::~writeform()
+WriteForm::~WriteForm()
 {
     delete ui;
 }
 
-void writeform::on_cancelBut_clicked()
+void WriteForm::on_cancelBut_clicked()
 {
     close();
 }
 
-void writeform::on_okBut_clicked()
+void WriteForm::on_okBut_clicked()
 {
     writeInFile("a.mpd",diary.getEncrypted());
 }
 
-void writeform::on_nextBut_clicked()
+void WriteForm::on_nextBut_clicked()
 {
     diary.addEntry(ui->number->text().toInt(),new Date(ui->date->text().toStdString()),ui->textEdit->toPlainText().toStdString());
 }
 
-void writeform::on_dateNowButton_clicked()
+void WriteForm::on_dateNowButton_clicked()
 {
     ui->date->setText(Date().toString().c_str());
 }
 
-void writeform::on_dateNextButton_clicked()
+void WriteForm::on_dateNextButton_clicked()
 {
     ui->date->setText(Date(ui->date->text().toStdString()).next().toString().c_str());
 }
 
-void writeform::on_dateBeforeButton_clicked()
+void WriteForm::on_dateBeforeButton_clicked()
 {
     ui->date->setText(Date(ui->date->text().toStdString()).prev().toString().c_str());
 }
