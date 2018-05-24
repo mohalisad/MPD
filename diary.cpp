@@ -12,7 +12,7 @@ void Diary::addEntry(int num,Date *d,std::string t){
 }
 std::string Diary::getEncrypted(){
     std::string retu;
-    for(int i=0;i<v.size();i++)retu+=v[i]->getHash();
+    for(int i=0;i<v.size();i++)retu+=v[i]->getHash()+"\n";
     return retu;
 }
 Entry* Diary::operator[](int input){

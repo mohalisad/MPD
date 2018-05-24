@@ -49,7 +49,8 @@ void ReadForm::refreshUI(){
     setButtonDisable();
     ui->date->setText(diary[index]->getDate().c_str());
     ui->number->setText(QString::number(diary[index]->getNumber()));
-    ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+    ui->textBrowser->setPlainText(diary[index]->getText().c_str());
+    ui->textBrowser->setAlignment(Qt::AlignJustify);
 }
 
 void ReadForm::on_cancelBut_clicked()
