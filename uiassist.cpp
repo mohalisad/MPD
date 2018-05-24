@@ -1,6 +1,7 @@
 #include "uiassist.h"
 #include "qstring.h"
 #include "qfontdatabase.h"
+#include "strtoken.h"
 
 bool UIAssist::yekanSet=false;
 int UIAssist::yekanID;
@@ -21,6 +22,12 @@ QFont UIAssist::yekan(){
     return fon;
 }
 QString UIAssist::justify(QString input){
-    return "<p align=\"justify\">"+input+"</p>";
+    StringTokenizer tokens(input.toStdString(),"\n\r");
+    std::string retu="<p align=\"justify\">";
+    for(int i=0;i<tokens.size()-1;i++){
+        retu+=tokens[i]+"</p><p align=\"justify\">";
+    }
+    retu+=tokens[tokens.size()-1]+"</p>";
+    return QString(retu.c_str());
 }
 

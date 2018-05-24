@@ -41,6 +41,8 @@ void WriteForm::on_nextBut_clicked()
     on_dateNextButton_clicked();
     on_autoincbut_clicked();
     ui->textEdit->setText("");
+    ui->textEdit->setAlignment(Qt::AlignJustify);
+    ui->textEdit->setFont(UIAssist::yekan());
 }
 
 void WriteForm::on_dateNowButton_clicked()
