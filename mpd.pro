@@ -50,3 +50,6 @@ RESOURCES += \
 
 DISTFILES += \
     .gitignore
+
+ICON = icons/logo.icns
+RC_ICONS = icons/logo.ico
