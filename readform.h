@@ -22,8 +22,7 @@ private slots:
 
     void on_cancelBut_clicked();
 
-    void on_timer_timeout();
-
+    void updateClock();
 
     void on_goButton_clicked();
 

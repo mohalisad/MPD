@@ -11,7 +11,7 @@ UIAssist::UIAssist(){}
 QFont UIAssist::yekan(){
     int id;
     if(!yekanSet){
-        QFontDatabase::addApplicationFont(":/fonts/yekan.ttf");
+        id=QFontDatabase::addApplicationFont(":/fonts/yekan.ttf");
         yekanID=id;
     }
     else id=yekanID;

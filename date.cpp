@@ -5,7 +5,7 @@
 
 time_t getLocalTime(float timezone){
     time_t now = time(0);
-    now+=3600*timezone;
+    now+=(long)(timezone*3600);
     return now;
 }
 

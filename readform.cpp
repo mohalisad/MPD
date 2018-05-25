@@ -5,8 +5,6 @@
 #include "date.h"
 #include "qtimer.h"
 
-#include "qdebug.h"
-
 ReadForm::ReadForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ReadForm)
@@ -18,11 +16,11 @@ ReadForm::ReadForm(QWidget *parent) :
     setLayoutDirection(Qt::RightToLeft);
 
     QTimer *timer = new QTimer(this);
-    QObject::connect(timer,SIGNAL(timeout()),this ,SLOT(on_timer_timeout()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
     timer->start(1000);
-    on_timer_timeout();
+    updateClock();
 
-    diary.readFromText(readAllFromFile("a.mpd"));
+    diary.readFromText(readAllFromFile(PATH));
     index=0;
     refreshUI();
 }
@@ -57,13 +55,14 @@ void ReadForm::refreshUI(){
     ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
     ui->number->setText(QString::number(diary[index]->getNumber())+"/"+QString::number(diary.size()));
     ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+    repaint();
 }
 
 void ReadForm::on_cancelBut_clicked()
 {
     close();
 }
-void ReadForm::on_timer_timeout(){
+void ReadForm::updateClock(){
     ui->nowDate->setText(Date::now().c_str());
     ui->nowDayOfWeek->setText(Date().getDayOfWeek().c_str());
 }

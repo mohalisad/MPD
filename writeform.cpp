@@ -16,7 +16,7 @@ WriteForm::WriteForm(QWidget *parent) :
     ui->textEdit->setAlignment(Qt::AlignJustify);
     ui->textEdit->setFont(UIAssist::yekan());
 
-    diary.readFromText(readAllFromFile("a.mpd"));
+    diary.readFromText(readAllFromFile(PATH));
 }
 
 WriteForm::~WriteForm()
@@ -31,7 +31,7 @@ void WriteForm::on_cancelBut_clicked()
 
 void WriteForm::on_okBut_clicked()
 {
-    writeInFile("a.mpd",diary.getEncrypted());
+    writeInFile(PATH,diary.getEncrypted());
     close();
 }
 

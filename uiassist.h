@@ -3,6 +3,12 @@
 
 #include "qfont.h"
 
+#if defined(__APPLE__)||defined(__MACH__)
+    #define PATH "../../../a.mpd"
+#else
+    #define PATH "a.mpd"
+#endif
+
 class UIAssist
 {
 private:
