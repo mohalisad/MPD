@@ -4,6 +4,7 @@
 #define FILE_NAME "a.mpd"
 
 #if defined(__APPLE__)||defined(__MACH__)
+#include <string>
     #define PATH (getPath()+FILE_NAME).c_str()
     std::string getPath();
 #else
