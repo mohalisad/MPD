@@ -4,6 +4,7 @@
 #include "strlib.h"
 #include "date.h"
 #include "codeassist.h"
+#include "mainwindow.h"
 
 WriteForm::WriteForm(QWidget *parent) :
     QWidget(parent),
@@ -27,6 +28,8 @@ WriteForm::~WriteForm()
 
 void WriteForm::on_cancelBut_clicked()
 {
+    MainWindow *mw=new MainWindow();
+    mw->show();
     close();
 }
 

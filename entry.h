@@ -18,11 +18,11 @@ private:
   EntryState state;
   void encrypt(std::string key=userKey);
   void decrypt();
-  void recrypt(std::string newKey);
 public:
   static void setUserKey(std::string input);
   Entry(int num,Date *d,std::string t);
   Entry(std::string input);
+  void recrypt(std::string newKey);
   std::string getHash();
   std::string getText();
   std::string getDate();

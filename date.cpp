@@ -35,7 +35,7 @@ void Date::setToNow(float timezone){
     for(int i=0;i<dif;i++){
         goNext();
     }
-    dayOfWeek=5+now%7;
+    dayOfWeek=(5+now)%7;
 }
 bool Date::isItKabise(){
     int arr[]={1,5,9,13,17,22,26,30};

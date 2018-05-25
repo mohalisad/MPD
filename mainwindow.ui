@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>246</width>
-    <height>139</height>
+    <width>250</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -41,8 +44,20 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="but3">
+      <property name="text">
+       <string>تغییر رمز</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
+  <action name="action">
+   <property name="text">
+    <string>تغییر رمز</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

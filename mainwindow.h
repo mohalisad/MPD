@@ -20,6 +20,8 @@ private slots:
 
     void on_but1_clicked();
 
+    void on_but3_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

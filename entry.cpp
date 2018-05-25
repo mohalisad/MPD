@@ -47,9 +47,8 @@ void Entry::decrypt(){
     state=ES_DECRYPTED;
 }
 void Entry::recrypt(std::string newKey) {
-  if(state==ES_UNDECRYPTED)decrypt();
-  encrypt(newKey);
-  state=ES_ENCRYPTED;
+    if(state==ES_UNDECRYPTED)decrypt();
+    encrypt(newKey);
 }
 std::string Entry::getHash(){
     if(state==ES_UNENCRYPTED)encrypt();

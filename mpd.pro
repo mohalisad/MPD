@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     writeform.cpp \
     uiassist.cpp \
     readform.cpp \
-    codeassist.cpp
+    codeassist.cpp \
+    changepassform.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -41,11 +42,13 @@ HEADERS  += mainwindow.h \
     writeform.h \
     uiassist.h \
     readform.h \
-    codeassist.h
+    codeassist.h \
+    changepassform.h
 
 FORMS    += mainwindow.ui \
     writeform.ui \
-    readform.ui
+    readform.ui \
+    changepassform.ui
 
 RESOURCES += \
     resources.qrc

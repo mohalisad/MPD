@@ -136,7 +136,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QPushButton" name="cancelBut">
        <property name="text">
-        <string>انصراف</string>
+        <string>خروج</string>
        </property>
       </widget>
      </item>

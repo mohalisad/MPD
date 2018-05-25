@@ -5,6 +5,7 @@
 #include "date.h"
 #include "qtimer.h"
 #include "codeassist.h"
+#include "mainwindow.h"
 
 ReadForm::ReadForm(QWidget *parent) :
     QWidget(parent),
@@ -63,6 +64,8 @@ void ReadForm::refreshUI(){
 
 void ReadForm::on_cancelBut_clicked()
 {
+    MainWindow *mw=new MainWindow();
+    mw->show();
     close();
 }
 void ReadForm::updateClock(){
