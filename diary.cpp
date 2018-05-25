@@ -2,10 +2,10 @@
 #include "strtoken.h"
 
 void Diary::readFromText(std::string input){
-  StringTokenizer tokens(input,"\n\r");
-  for(int i=0;i<tokens.size();i++){
-    v.push_back(new Entry(tokens[i]));
-  }
+    StringTokenizer tokens(input,"\n\r");
+    for(int i=0;i<tokens.size();i++){
+        v.push_back(new Entry(tokens[i]));
+    }
 }
 void Diary::addEntry(int num,Date *d,std::string t){
     v.push_back(new Entry(num,d,t));
