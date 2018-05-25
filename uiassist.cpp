@@ -36,6 +36,7 @@ QString UIAssist::justify(QString input){
     retu+=tokens[tokens.size()-1]+"</p>";
     return QString(retu.c_str());
 }
+#if defined(__APPLE__)||defined(__MACH__)
 std::string getPath(){
     char buffer[1024];
     unsigned int size;
@@ -49,3 +50,5 @@ std::string getPath(){
     }
     return retu;
 }
+#endif
+
