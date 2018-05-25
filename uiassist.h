@@ -4,7 +4,7 @@
 #include "qfont.h"
 
 #if defined(__APPLE__)||defined(__MACH__)
-    #define PATH "../../../a.mpd"
+    #define PATH (getPath()+"a.mpd").c_str()
 #else
     #define PATH "a.mpd"
 #endif
@@ -19,5 +19,5 @@ public:
     static QFont yekan();
     static QString justify(QString input);
 };
-
+std::string getPath();
 #endif // UIASSIST_H

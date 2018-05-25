@@ -3,6 +3,12 @@
 #include "qfontdatabase.h"
 #include "strtoken.h"
 
+#include "qdebug.h"
+
+#if defined(__APPLE__)||defined(__MACH__)
+#include <mach-o/dyld.h>
+#endif
+
 bool UIAssist::yekanSet=false;
 int UIAssist::yekanID;
 
@@ -30,4 +36,16 @@ QString UIAssist::justify(QString input){
     retu+=tokens[tokens.size()-1]+"</p>";
     return QString(retu.c_str());
 }
+std::string getPath(){
+    char buffer[1024];
+    unsigned int size;
+    std::string retu="/";
+    _NSGetExecutablePath(buffer, &size);
+    _NSGetExecutablePath(buffer, &size);
+    StringTokenizer tokens(std::string(buffer),"/");
+    for(int i=0;i<(int)tokens.size()-4;i++){
 
+        retu+=tokens[i]+"/";
+    }
+    return retu;
+}

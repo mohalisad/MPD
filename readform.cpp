@@ -27,7 +27,7 @@ ReadForm::ReadForm(QWidget *parent) :
 void ReadForm::setButtonDisable()
 {
     if(index<0)index=0;
-    if(index>diary.size()-1)index=diary.size()-1;
+    if(index>diary.size()-1)index=(int)diary.size()-1;
     ui->prevBut->setDisabled(index==0);
     ui->nextBut->setDisabled(index+1==diary.size());
 
@@ -51,11 +51,13 @@ void ReadForm::on_nextBut_clicked()
 }
 void ReadForm::refreshUI(){
     setButtonDisable();
-    ui->date->setText(diary[index]->getDate().c_str());
-    ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
-    ui->number->setText(QString::number(diary[index]->getNumber())+"/"+QString::number(diary.size()));
-    ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
-    repaint();
+    if(diary.size()!=0){
+        ui->date->setText(diary[index]->getDate().c_str());
+        ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
+        ui->number->setText(QString::number(diary[index]->getNumber())+"/"+QString::number(diary.size()));
+        ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+        repaint();
+    }
 }
 
 void ReadForm::on_cancelBut_clicked()
