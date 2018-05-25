@@ -3,6 +3,7 @@
 #include "uiassist.h"
 #include "strlib.h"
 #include "date.h"
+#include "qtimer.h"
 
 #include "qdebug.h"
 
@@ -15,6 +16,11 @@ ReadForm::ReadForm(QWidget *parent) :
     ui->groupBox->setFont(UIAssist::yekan());
     ui->groupBox_2->setFont(UIAssist::yekan());
     setLayoutDirection(Qt::RightToLeft);
+
+    QTimer *timer = new QTimer(this);
+    QObject::connect(timer,SIGNAL(timeout()),this ,SLOT(on_timer_timeout()));
+    timer->start(1000);
+    on_timer_timeout();
 
     diary.readFromText(readAllFromFile("a.mpd"));
     index=0;
@@ -48,11 +54,20 @@ void ReadForm::on_nextBut_clicked()
 void ReadForm::refreshUI(){
     setButtonDisable();
     ui->date->setText(diary[index]->getDate().c_str());
-    ui->number->setText(QString::number(diary[index]->getNumber()));
+    ui->number->setText(QString::number(diary[index]->getNumber())+"/"+QString::number(diary.size()));
     ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
 }
 
 void ReadForm::on_cancelBut_clicked()
 {
     close();
+}
+void ReadForm::on_timer_timeout(){
+    ui->time->setText(Date::now().c_str());
+}
+
+void ReadForm::on_goButton_clicked()
+{
+    index=ui->goNumber->text().toInt()-1;
+    refreshUI();
 }

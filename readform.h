@@ -15,13 +15,17 @@ class ReadForm : public QWidget
 public:
     explicit ReadForm(QWidget *parent = 0);
     ~ReadForm();
-
 private slots:
     void on_prevBut_clicked();
 
     void on_nextBut_clicked();
 
     void on_cancelBut_clicked();
+
+    void on_timer_timeout();
+
+
+    void on_goButton_clicked();
 
 private:
     Ui::ReadForm *ui;
