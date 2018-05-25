@@ -33,7 +33,7 @@ std::string subFromBeg(std::string input,int size){
 }
 std::string subFromEnd(std::string input,int size){
   std::string ret;
-  for(int i=input.size()-1;i>input.size()-size-1;i--){
+  for(unsigned int i=input.size()-1;i>input.size()-size-1;i--){
     ret=input[i]+ret;
   }
   return ret;

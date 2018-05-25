@@ -1,9 +1,18 @@
 #include "codeassist.h"
 
-<template T>
-int getIndex(const T* arr,const unsigned int arr_size,const T input){
-  for(int i=0;i<arr_size,i++){
-    if(arr[i]==input)return i;
-  }
-  return -1;
+#if defined(__APPLE__)||defined(__MACH__)
+#include <mach-o/dyld.h>
+std::string getPath(){
+    char buffer[1024];
+    unsigned int size;
+    std::string retu="/";
+    _NSGetExecutablePath(buffer, &size);
+    _NSGetExecutablePath(buffer, &size);
+    StringTokenizer tokens(std::string(buffer),"/");
+    for(int i=0;i<(int)tokens.size()-4;i++){
+
+        retu+=tokens[i]+"/";
+    }
+    return retu;
 }
+#endif

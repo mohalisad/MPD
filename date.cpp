@@ -2,6 +2,8 @@
 #include "date.h"
 #include "strlib.h"
 #include "strtoken.h"
+#include "codeassist.h"
+#include "exception.h"
 
 time_t getLocalTime(float timezone){
     time_t now = time(0);
@@ -35,9 +37,9 @@ void Date::setToNow(float timezone){
     }
     dayOfWeek=5+now%7;
 }
-bool isItKabise(){
-  int mod=year%33;
-  return mod==1||mod==5||mod==9||mod==13||mod==17||
+bool Date::isItKabise(){
+    int arr[]={1,5,9,13,17,22,26,30};
+    return getIndex<int>(arr,8,year%33)!=-1;
 }
 Date::Date(){
     setToNow(3.5);
@@ -64,7 +66,7 @@ void Date::goNext(){
             month++;
         }
     }else{
-        if(month!=12||year%4==3){
+        if(month!=12||isItKabise()){
             if(day>30){
                 day=1;
                 month++;
@@ -94,7 +96,7 @@ void Date::goPrev(){
         if(month>6){
             day--;
         }
-        if(month==12&&year%4!=3){
+        if(month==12&&!isItKabise()){
             day--;
         }
         dayOfWeek=(dayOfWeek-1)%7;
@@ -132,6 +134,7 @@ std::string Date::getDayOfWeek(){
     case 6:
         return "جمعه";
     }
+    throw Exception("DayOfWeek is wrong");
 }
 std::string Date::now(){
     Date d;

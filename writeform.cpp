@@ -3,6 +3,7 @@
 #include "uiassist.h"
 #include "strlib.h"
 #include "date.h"
+#include "codeassist.h"
 
 WriteForm::WriteForm(QWidget *parent) :
     QWidget(parent),

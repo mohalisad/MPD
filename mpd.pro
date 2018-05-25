@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     strtoken.cpp \
     writeform.cpp \
     uiassist.cpp \
-    readform.cpp
+    readform.cpp \
+    codeassist.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     strtoken.h \
     writeform.h \
     uiassist.h \
-    readform.h
+    readform.h \
+    codeassist.h
 
 FORMS    += mainwindow.ui \
     writeform.ui \

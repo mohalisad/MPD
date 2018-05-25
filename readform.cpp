@@ -4,6 +4,7 @@
 #include "strlib.h"
 #include "date.h"
 #include "qtimer.h"
+#include "codeassist.h"
 
 ReadForm::ReadForm(QWidget *parent) :
     QWidget(parent),
@@ -27,9 +28,9 @@ ReadForm::ReadForm(QWidget *parent) :
 void ReadForm::setButtonDisable()
 {
     if(index<0)index=0;
-    if(index>diary.size()-1)index=(int)diary.size()-1;
+    if(index>((int)diary.size())-1)index=(int)diary.size()-1;
     ui->prevBut->setDisabled(index==0);
-    ui->nextBut->setDisabled(index+1==diary.size());
+    ui->nextBut->setDisabled((unsigned int)index+1==diary.size());
 
 }
 
