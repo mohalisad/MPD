@@ -12,6 +12,7 @@ private:
   Date clone();
   void calcDayOfWeek();
   void setToNow(float timezone);
+  bool isItKabise();
 public:
   Date();
   Date(int y,int m,int d);

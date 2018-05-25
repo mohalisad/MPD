@@ -35,7 +35,10 @@ void Date::setToNow(float timezone){
     }
     dayOfWeek=5+now%7;
 }
-
+bool isItKabise(){
+  int mod=year%33;
+  return mod==1||mod==5||mod==9||mod==13||mod==17||
+}
 Date::Date(){
     setToNow(3.5);
     if(month<7)setToNow(4.5);

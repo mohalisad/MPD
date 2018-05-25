@@ -1,6 +1,7 @@
 #include "cryptor.h"
 #include "date.h"
 #include "strlib.h"
+#include "codeassist.h"
 
 #define _KEY "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?"
 #define _KEY_LENGTH 64
@@ -57,10 +58,7 @@ bool Cryptor::bitGet(int input,int position){
     return input&pow2;
 }
 int Cryptor::getPossition(char input){
-    for(int i=0;i<_KEY_LENGTH;i++){
-        if(_KEY[i]==input)return i;
-    }
-    return -1;
+    return getIndex<char>(_KEY,_KEY_LENGTH,input);
 }
 std::string Cryptor::encrypt(std::string input,std::string key){
     std::string retu,salt;

@@ -16,8 +16,9 @@ private:
   std::string text;
   std::string hash;
   EntryState state;
-  void encrypt();
+  void encrypt(std::string key=userKey);
   void decrypt();
+  void recrypt();
 public:
   static void setUserKey(std::string input);
   Entry(int num,Date *d,std::string t);

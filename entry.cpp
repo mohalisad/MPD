@@ -24,11 +24,11 @@ Entry::Entry(std::string input){
     hash=input;
 }
 
-void Entry::encrypt(){
+void Entry::encrypt(std::string key){
 #if TAG_MODE==1
-    hash= c.encrypt("<entry>"+intToString(number)+"</entry><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>",userKey);
+    hash= c.encrypt("<entry>"+intToString(number)+"</entry><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>",key);
 #else
-    hash= c.encrypt(intToString(number)+" "+date->toString()+" "+c.encrypt(text,KEY),userKey);
+    hash= c.encrypt(intToString(number)+" "+date->toString()+" "+c.encrypt(text,KEY),key);
 #endif
     state=ES_ENCRYPTED;
 }
@@ -45,6 +45,11 @@ void Entry::decrypt(){
     text=c.decrypt(tokens[2],KEY);
 #endif
     state=ES_DECRYPTED;
+}
+void Entry::recrypt(std::string newKey) {
+  if(state==ES_UNDECRYPTED)decrypt();
+  encrypt(newKey);
+  state=ES_ENCRYPTED;
 }
 std::string Entry::getHash(){
     if(state==ES_UNENCRYPTED)encrypt();
