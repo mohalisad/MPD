@@ -54,6 +54,7 @@ void ReadForm::on_nextBut_clicked()
 void ReadForm::refreshUI(){
     setButtonDisable();
     ui->date->setText(diary[index]->getDate().c_str());
+    ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
     ui->number->setText(QString::number(diary[index]->getNumber())+"/"+QString::number(diary.size()));
     ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
 }
@@ -63,7 +64,8 @@ void ReadForm::on_cancelBut_clicked()
     close();
 }
 void ReadForm::on_timer_timeout(){
-    ui->time->setText(Date::now().c_str());
+    ui->nowDate->setText(Date::now().c_str());
+    ui->nowDayOfWeek->setText(Date().getDayOfWeek().c_str());
 }
 
 void ReadForm::on_goButton_clicked()

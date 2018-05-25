@@ -21,6 +21,7 @@ public:
   void goPrev();
   void goNext();
   std::string toString();
+  std::string getDayOfWeek();
   static std::string now();
   static std::string clock();
 };

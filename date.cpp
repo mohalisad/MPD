@@ -112,6 +112,24 @@ std::string Date::toString(){
     retu= intToString(year) + "/"+intToString(month)+"/"+intToString(day);
     return retu;
 }
+std::string Date::getDayOfWeek(){
+    switch (dayOfWeek) {
+    case 0:
+        return "شنبه";
+    case 1:
+        return "یک شنبه";
+    case 2:
+        return "دوشنبه";
+    case 3:
+        return "سه شنبه";
+    case 4:
+        return "چهارشنبه";
+    case 5:
+        return "پنج شنبه";
+    case 6:
+        return "جمعه";
+    }
+}
 std::string Date::now(){
     Date d;
     return d.toString()+" "+Date::clock();
