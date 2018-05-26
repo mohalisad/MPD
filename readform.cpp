@@ -6,6 +6,7 @@
 #include "qtimer.h"
 #include "codeassist.h"
 #include "mainwindow.h"
+#include "digitvalidator.h"
 
 ReadForm::ReadForm(QWidget *parent) :
     QWidget(parent),
@@ -16,6 +17,8 @@ ReadForm::ReadForm(QWidget *parent) :
     ui->groupBox->setFont(UIAssist::yekan());
     ui->groupBox_2->setFont(UIAssist::yekan());
     setLayoutDirection(Qt::RightToLeft);
+
+    ui->goNumber->setValidator(new digitValidator());
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
@@ -75,6 +78,6 @@ void ReadForm::updateClock(){
 
 void ReadForm::on_goButton_clicked()
 {
-    index=ui->goNumber->text().toInt()-1;
+    index=UIAssist::numConverter(ui->goNumber->text()).toInt()-1;
     refreshUI();
 }

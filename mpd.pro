@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     uiassist.cpp \
     readform.cpp \
     codeassist.cpp \
-    changepassform.cpp
+    changepassform.cpp \
+    digitvalidator.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     uiassist.h \
     readform.h \
     codeassist.h \
-    changepassform.h
+    changepassform.h \
+    digitvalidator.h
 
 FORMS    += mainwindow.ui \
     writeform.ui \

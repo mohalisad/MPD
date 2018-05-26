@@ -5,6 +5,7 @@
 #include "date.h"
 #include "codeassist.h"
 #include "mainwindow.h"
+#include "digitvalidator.h"
 
 WriteForm::WriteForm(QWidget *parent) :
     QWidget(parent),
@@ -18,6 +19,9 @@ WriteForm::WriteForm(QWidget *parent) :
     ui->textEdit->setAlignment(Qt::AlignJustify);
     ui->textEdit->setFont(UIAssist::yekan());
 
+    ui->date->setValidator(new digitValidator("/"));
+    ui->number->setValidator(new digitValidator());
+
     diary.readFromText(readAllFromFile(PATH));
 }
 
@@ -25,6 +29,16 @@ WriteForm::~WriteForm()
 {
     delete ui;
 }
+QString WriteForm::getNumber(){
+    return UIAssist::numConverter(ui->number->text());
+}
+QString WriteForm::getDate(){
+    return UIAssist::numConverter(ui->date->text());
+}
+QString WriteForm::getText(){
+    return ui->textEdit->toPlainText();
+}
+
 
 void WriteForm::on_cancelBut_clicked()
 {
@@ -36,12 +50,14 @@ void WriteForm::on_cancelBut_clicked()
 void WriteForm::on_okBut_clicked()
 {
     writeInFile(PATH,diary.getEncrypted());
+    MainWindow *mw=new MainWindow();
+    mw->show();
     close();
 }
 
 void WriteForm::on_nextBut_clicked()
 {
-    diary.addEntry(ui->number->text().toInt(),new Date(ui->date->text().toStdString()),ui->textEdit->toPlainText().toStdString());
+    diary.addEntry(getNumber().toInt(),new Date(getDate().toStdString()),getText().toStdString());
     on_dateNextButton_clicked();
     on_autoincbut_clicked();
     ui->textEdit->setText("");
@@ -56,12 +72,12 @@ void WriteForm::on_dateNowButton_clicked()
 
 void WriteForm::on_dateNextButton_clicked()
 {
-    ui->date->setText(Date(ui->date->text().toStdString()).next().toString().c_str());
+    ui->date->setText(Date(getDate().toStdString()).next().toString().c_str());
 }
 
 void WriteForm::on_dateBeforeButton_clicked()
 {
-    ui->date->setText(Date(ui->date->text().toStdString()).prev().toString().c_str());
+    ui->date->setText(Date(getDate().toStdString()).prev().toString().c_str());
 }
 
 void WriteForm::on_autoincbut_clicked()

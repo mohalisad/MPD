@@ -34,6 +34,9 @@ private slots:
 private:
     Ui::WriteForm *ui;
     Diary diary;
+    QString getNumber();
+    QString getDate();
+    QString getText();
 };
 
 #endif // WRITEFORM_H

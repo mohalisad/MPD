@@ -3,9 +3,15 @@
 #include "qfontdatabase.h"
 #include "strtoken.h"
 
+#include "qdebug.h"
+
+#define ENGLISH_NUMBERS "0123456789"
+#define PERSIAN_NUMBERS "۰۱۲۳۴۵۶۷۸۹"
 
 bool UIAssist::yekanSet=false;
 int UIAssist::yekanID;
+QString UIAssist::persianNumbers(PERSIAN_NUMBERS);
+QString UIAssist::englishNumbers(ENGLISH_NUMBERS);
 
 UIAssist::UIAssist(){}
 
@@ -30,4 +36,21 @@ QString UIAssist::justify(QString input){
     }
     retu+=tokens[tokens.size()-1]+"</p>";
     return QString(retu.c_str());
+}
+
+QString UIAssist::numConverter(QString input,bool fromPersianToEnglish){
+    int index;
+    for(int i=0;i<input.size();i++){
+        if(fromPersianToEnglish){
+            index=persianNumbers.indexOf(input[i]);
+            if(index!=-1)input[i]=englishNumbers[index];
+        }else{
+            index=englishNumbers.indexOf(input[i]);
+            if(index!=-1)input[i]=persianNumbers[index];
+        }
+    }
+    return input;
+}
+bool UIAssist::digitValid(QChar input){
+    return (englishNumbers.indexOf(input)+persianNumbers.indexOf(input))!=-2;
 }
