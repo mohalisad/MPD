@@ -15,16 +15,20 @@ class ReadForm : public QWidget
 public:
     explicit ReadForm(QWidget *parent = 0);
     ~ReadForm();
+public slots:
+    void entryEdit(int number,QString date,QString text);
 private slots:
     void on_prevBut_clicked();
 
     void on_nextBut_clicked();
 
-    void on_cancelBut_clicked();
+    void on_exitBut_clicked();
 
     void updateClock();
 
     void on_goButton_clicked();
+
+    void on_editBut_clicked();
 
 private:
     Ui::ReadForm *ui;

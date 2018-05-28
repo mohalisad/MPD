@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     readform.cpp \
     codeassist.cpp \
     changepassform.cpp \
-    digitvalidator.cpp
+    digitvalidator.cpp \
+    editorform.cpp
 
 HEADERS  += mainwindow.h \
     cryptor.h \
@@ -45,12 +46,14 @@ HEADERS  += mainwindow.h \
     readform.h \
     codeassist.h \
     changepassform.h \
-    digitvalidator.h
+    digitvalidator.h \
+    editorform.h
 
 FORMS    += mainwindow.ui \
     writeform.ui \
     readform.ui \
-    changepassform.ui
+    changepassform.ui \
+    editorform.ui
 
 RESOURCES += \
     resources.qrc

@@ -18,10 +18,10 @@ void ChangePassThread::run(){
     QObject::connect(this, SIGNAL(endProgress()), cpfParent, SLOT(closeYourself()));
     for (unsigned int i=0;i<diary.size();i++){
         diary[i]->recrypt(newPass);
-        setProgress((float)i*100/diary.size());
+        emit setProgress((float)i*100/diary.size());
     }
     writeInFile(PATH,diary.getEncrypted());
-    endProgress();
+    emit endProgress();
 }
 
 ChangePassForm::ChangePassForm(QWidget *parent) :

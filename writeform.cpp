@@ -15,7 +15,6 @@ WriteForm::WriteForm(QWidget *parent) :
     setFont(UIAssist::yekan());
     ui->groupBox->setFont(UIAssist::yekan());
     ui->groupBox_2->setFont(UIAssist::yekan());
-    setLayoutDirection(Qt::RightToLeft);
     ui->textEdit->setAlignment(Qt::AlignJustify);
     ui->textEdit->setFont(UIAssist::yekan());
 

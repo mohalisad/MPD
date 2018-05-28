@@ -57,6 +57,13 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="indexNumber">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -134,9 +141,16 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QPushButton" name="cancelBut">
+      <widget class="QPushButton" name="exitBut">
        <property name="text">
         <string>خروج</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editBut">
+       <property name="text">
+        <string>تغییر</string>
        </property>
       </widget>
      </item>
