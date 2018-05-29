@@ -12,7 +12,7 @@ class EditorForm : public QWidget
 {
     Q_OBJECT
 signals:
-    formOK(int number,QString date,QString text);
+    void formOK(int number,QString date,QString text);
 public:
     explicit EditorForm(int entryNumber,int suggestNumber,QString date,QString text,ReadForm *parent);
     ~EditorForm();
