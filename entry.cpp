@@ -1,6 +1,7 @@
 #include "entry.h"
 #include "strlib.h"
 #include "strtoken.h"
+#include "exception.h"
 
 #define KEY "entry_key1234"
 #define TAG_MODE 0
@@ -40,6 +41,7 @@ void Entry::decrypt(){
     text=c.decrypt(getTag(unhashed,"text"),KEY);
 #else
     StringTokenizer tokens(c.decrypt(hash,userKey)," ");
+    if(tokens.size()!=3)throw Exception ("Decryption cannot be done");
     number=parseInt(tokens[0]);
     date=new Date(tokens[1]);
     text=c.decrypt(tokens[2],KEY);

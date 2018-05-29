@@ -7,6 +7,7 @@
 #include "uiassist.h"
 #include "entry.h"
 #include "changepassform.h"
+#include "exception.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -36,9 +37,11 @@ void MainWindow::on_but2_clicked()
 void MainWindow::on_but1_clicked()
 {
     Entry::setUserKey(ui->lineEdit->text().toStdString());
-    ReadForm *rf=new ReadForm();
-    rf->show();
-    close();
+    try{
+        ReadForm *rf=new ReadForm();
+        rf->show();
+        close();
+    }catch(Exception ex){}
 }
 
 void MainWindow::on_but3_clicked()

@@ -8,6 +8,8 @@
 #include "mainwindow.h"
 #include "digitvalidator.h"
 #include "editorform.h"
+#include "exception.h"
+#include "qmessagebox.h"
 
 ReadForm::ReadForm(QWidget *parent) :
     QWidget(parent),
@@ -63,12 +65,28 @@ void ReadForm::on_nextBut_clicked()
 void ReadForm::refreshUI(){
     setButtonDisable();
     if(diary.size()!=0){
-        ui->date->setText(diary[index]->getDate().c_str());
-        ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
-        ui->number->setText(QString::number(diary[index]->getNumber()));
-        ui->indexNumber->setText(QString::number(index+1)+"/"+QString::number(diary.size()));
-        ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+        try{
+            ui->date->setText(diary[index]->getDate().c_str());
+            ui->dayOfWeek->setText(Date(diary[index]->getDate()).getDayOfWeek().c_str());
+            ui->number->setText(QString::number(diary[index]->getNumber()));
+            ui->indexNumber->setText(QString::number(index+1)+"/"+QString::number(diary.size()));
+            ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+        }catch(Exception ex){
+            QMessageBox msg;
+            msg.setFont(UIAssist::yekan());
+            msg.setText("فایل آسیب دیده است یا رمز فایل نادرست است.");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
+            throw Exception("Wrong Entry");
+        }
         repaint();
+    }else{
+        QMessageBox msg;
+        msg.setFont(UIAssist::yekan());
+        msg.setText("هیچ ورودی برای خواندن وجود ندارد.");
+        msg.setIcon(QMessageBox::Critical);
+        msg.exec();
+        throw Exception("No Entry");
     }
 }
 

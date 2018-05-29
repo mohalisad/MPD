@@ -53,6 +53,7 @@ Date::Date(int y,int m,int d){
 }
 Date::Date(std::string input){
     StringTokenizer tokens(input,"/");
+    if(tokens.size()!=3)throw Exception("Date string is invalid");
     year=parseInt(tokens[0]);
     month=parseInt(tokens[1]);
     day=parseInt(tokens[2]);
