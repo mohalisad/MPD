@@ -1,14 +1,10 @@
 #include "random.h"
 #include "strlib.h"
+#include "sha256.h"
 
 #define BASE 10
 #define LENGTH 8
 #define MAX_STATE 100000
-
-char toUpper(char input){
-    if(input>95)return input-32;
-    else return input;
-}
 
 Random::Random(std::string input){
     state=0;

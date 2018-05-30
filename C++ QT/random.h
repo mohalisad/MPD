@@ -2,7 +2,6 @@
 #define RANDOM_H
 
 #include <string>
-#include "sha256.h"
 
 class Random{
 private:
