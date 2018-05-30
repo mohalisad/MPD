@@ -76,7 +76,7 @@ void Entry::setDate(std::string input){
     date=new Date(input);
     state=ES_UNENCRYPTED;
 }
-void Entry::Entry::setNumber(int input){
+void Entry::setNumber(int input){
     number=input;
     state=ES_UNDECRYPTED;
 }
