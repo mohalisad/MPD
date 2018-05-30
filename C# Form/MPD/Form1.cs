@@ -16,5 +16,12 @@ namespace MPD
         {
             InitializeComponent();
         }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //textBox3.Text= new Cryptor().decrypt(textBox2.Text, textBox1.Text);
+            textBox3.Text = new Cryptor().decrypt(new Cryptor().decrypt(textBox2.Text, textBox1.Text).Split(' ')[2], "entry_key1234");
+        }
     }
 }
