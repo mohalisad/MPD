@@ -75,10 +75,11 @@ namespace MPD
         {
             return _KEY.IndexOf(input);
         }
-        public string encrypt(string input, string key)
+        public string encrypt(string _input, string key)
         {
             string retu="", salt;
             int[] disorderArray,disorderMoves,chars;
+            byte[] input = Encoding.UTF8.GetBytes(_input);
             int pointer = 0, length = MULTIPLY * input.Length * 8;
             length = length + 6 - length % 6;
             salt = randomString(SALT_LENGTH);

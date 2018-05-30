@@ -21,7 +21,19 @@ namespace MPD
         private void button1_Click(object sender, EventArgs e)
         {
             //textBox3.Text= new Cryptor().decrypt(textBox2.Text, textBox1.Text);
-            textBox3.Text = new Cryptor().decrypt(new Cryptor().decrypt(textBox2.Text, textBox1.Text).Split(' ')[2], "entry_key1234");
+            //textBox3.Text = new Cryptor().decrypt(new Cryptor().decrypt(textBox2.Text, textBox1.Text).Split(' ')[2], "entry_key1234");
+            textBox3.Text = new Cryptor().encrypt(textBox2.Text, textBox1.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            string t = textBox2.Text;
+            textBox2.Text = textBox3.Text;
+            textBox3.Text = t;
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            //textBox3.Text = new Cryptor().decrypt(textBox2.Text, textBox1.Text);
+            textBox3.Text = Encoding.UTF8.GetString( Encoding.UTF8.GetBytes(textBox2.Text));
         }
     }
 }
