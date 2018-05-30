@@ -32,8 +32,13 @@ namespace MPD
         }
 
         private void button3_Click(object sender, EventArgs e) {
-            //textBox3.Text = new Cryptor().decrypt(textBox2.Text, textBox1.Text);
-            textBox3.Text = Encoding.UTF8.GetString( Encoding.UTF8.GetBytes(textBox2.Text));
+            textBox3.Text = new Cryptor().decrypt(textBox2.Text, textBox1.Text);
+            //textBox3.Text = Encoding.UTF8.GetString( Encoding.UTF8.GetBytes(textBox2.Text));
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Date.now();
         }
     }
 }

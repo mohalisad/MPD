@@ -1,4 +1,6 @@
 *.sln
+*.db
+*.opendb
 /.vs/*
 /MPD/bin/*
 /MPD/obj/*

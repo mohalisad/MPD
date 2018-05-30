@@ -13,7 +13,7 @@ namespace MPD
         private const int SALT_LENGTH = 16;
         private const int MULTIPLY = 2;
         private const int DISORDER_RATE = 6;
-        MyRandom r=new MyRandom ("aaa");
+        MyRandom r=new MyRandom (Date.now());
         private string randomString(int length)
         {
             string retu="";
@@ -116,8 +116,8 @@ namespace MPD
         public string decrypt(string input, string key)
         {
             int[] disorderArray,disorderMoves,chars;
-            string ret="";
-            char temp;
+            List<byte> retchars = new List<byte>();
+            byte temp;
             int length;
             string salt = input.Substring(input.Length - SALT_LENGTH, SALT_LENGTH);
             input = input.Substring(0, input.Length - SALT_LENGTH);
@@ -132,17 +132,17 @@ namespace MPD
             int pointer = 0;
             while (pointer < length)
             {
-                temp = '\0';
+                temp = 0;
                 for (int j = 0; j < 8; j++)
                 {
-                    temp = (char)bitSet(temp, j, bitGet(chars[disorderArray[pointer] / 6], disorderArray[pointer] % 6));
+                    temp = (byte)bitSet(temp, j, bitGet(chars[disorderArray[pointer] / 6], disorderArray[pointer] % 6));
                     pointer++;
                     if (pointer == length) break;
                 }
                 if (temp == 0) break;
-                ret += temp.ToString();
+                retchars.Add(temp);
             }
-            return ret;
+            return Encoding.UTF8.GetString(retchars.ToArray());
         }
     }
 }
