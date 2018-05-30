@@ -2,5 +2,5 @@
 *.db
 *.opendb
 /.vs/*
-/MPD/bin/*
-/MPD/obj/*
+/bin/*
+/obj/*
