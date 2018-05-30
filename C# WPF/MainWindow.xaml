@@ -8,9 +8,10 @@
         Title="MainWindow" Height="350" Width="525">
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <Button>سلاک</Button>
-            <Button>سلاک</Button>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+            <Button Content="سلاک" Click="Button_Click"/>
         </StackPanel>
+        
 
     </StackPanel>
 </Window>

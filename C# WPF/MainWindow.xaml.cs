@@ -24,5 +24,11 @@ namespace MPD
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Entry.setUserKey("aa");
+            textBox.Text = new Entry(1, new Date(), "سلام").getHash();
+        }
     }
 }
