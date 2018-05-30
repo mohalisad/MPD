@@ -33,6 +33,7 @@ private slots:
 private:
     Ui::ReadForm *ui;
     int index;
+    bool isChanged;
     Diary diary;
     void setButtonDisable();
     void refreshUI();

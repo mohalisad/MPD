@@ -28,10 +28,14 @@ ReadForm::ReadForm(QWidget *parent) :
     updateClock();
 
     diary.readFromText(readAllFromFile(PATH));
+
     index=0;
+    isChanged=false;
+
     refreshUI();
 }
 void ReadForm::entryEdit(int number,QString date,QString text){
+    isChanged=true;
     diary[index]->setNumber(number);
     diary[index]->setDate(date.toStdString());
     diary[index]->setText(text.toStdString());
@@ -92,7 +96,7 @@ void ReadForm::refreshUI(){
 
 void ReadForm::on_exitBut_clicked()
 {
-    writeInFile(PATH,diary.getEncrypted());
+    if(isChanged)writeInFile(PATH,diary.getEncrypted());
     MainWindow *mw=new MainWindow();
     mw->show();
     close();
