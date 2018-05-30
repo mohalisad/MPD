@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:MPD"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Button>سلاک</Button>
+            <Button>سلاک</Button>
+        </StackPanel>
+
+    </StackPanel>
 </Window>
