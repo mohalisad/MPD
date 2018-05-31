@@ -63,7 +63,7 @@ int Cryptor::getPossition(char input){
 std::string Cryptor::encrypt(std::string input,std::string key){
     std::string retu,salt;
     int *disorderArray,*disorderMoves,*chars;
-    int pointer=0,length=MULTIPLY*input.size()*8;
+    int pointer=0,length=MULTIPLY*(input.size()+1)*8;
     length=length+6-length%6;
     salt =randomString(SALT_LENGTH);
     disorderMoves=makeDisorderMoves(length,key+salt);

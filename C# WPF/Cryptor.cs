@@ -11,7 +11,7 @@ namespace MPD
         private const string _KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?";
         private const int _KEY_LENGTH = 64;
         private const int SALT_LENGTH = 16;
-        private const int MULTIPLY = 2;
+        private const float MULTIPLY = 1.2;
         private const int DISORDER_RATE = 6;
         MyRandom r=new MyRandom (Date.now());
         private string randomString(int length)
@@ -80,7 +80,7 @@ namespace MPD
             string retu="", salt;
             int[] disorderArray,disorderMoves,chars;
             byte[] input = Encoding.UTF8.GetBytes(_input);
-            int pointer = 0, length = MULTIPLY * input.Length * 8;
+            int pointer = 0, length = MULTIPLY * (input.Length+1) * 8;
             length = length + 6 - length % 6;
             salt = randomString(SALT_LENGTH);
             disorderMoves = makeDisorderMoves(length, key + salt);
