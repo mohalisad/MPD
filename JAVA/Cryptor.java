@@ -19,7 +19,7 @@ public class Cryptor {
     private final static String _KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?";
     private final static int _KEY_LENGTH = 64;
     private final static int SALT_LENGTH = 16;
-    private final static float MULTIPLY = 1.2;
+    private final static double MULTIPLY = 1.2;
     private final static int DISORDER_RATE = 6;
     MyRandom r=new MyRandom (Date.now());
     private String randomString(int length)
@@ -88,7 +88,7 @@ public class Cryptor {
         String retu="", salt;
         int[] disorderArray,disorderMoves,chars;
         byte[] input = _input.getBytes(StandardCharsets.UTF_8);
-        int pointer = 0, length = MULTIPLY * (input.length+1) * 8;
+        int pointer = 0, length = (int)(MULTIPLY * (input.length+1) * 8);
         length = length + 6 - length % 6;
         salt = randomString(SALT_LENGTH);
         disorderMoves = makeDisorderMoves(length, key + salt);
