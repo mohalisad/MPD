@@ -1,4 +1,5 @@
 from MyRandom import MyRandom
+from Date import Date
 
 class Cryptor(object):
     _KEY="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?"
@@ -7,7 +8,7 @@ class Cryptor(object):
     MULTIPLY = 1.2
     DISORDER_RATE = 6
     def __init__(self):
-        self.r=MyRandom("a")
+        self.r=MyRandom(Date.now())
     def __randomString(self,length):
         retu=""
         for i in range(0,length):
