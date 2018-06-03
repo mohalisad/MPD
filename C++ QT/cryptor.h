@@ -7,12 +7,12 @@
 class Cryptor{
 private:
   Random r;
-  std::string randomString(int length);
-  static int* makeDisorderMoves(int length,std::string key);
-  static int* makeDisorderArray(int length,int* disorderMoves);
-  static int bitSet(int input,int position,bool toWhat);
-  static bool bitGet(int input,int position);
-  static int getPossition(char input);
+  std::string randomString(const int& length);
+  static int* makeDisorderMoves(const int& length,const std::string& key);
+  static int* makeDisorderArray(const int& length,const int* disorderMoves);
+  static int bitSet(const char& input,const int& position,const bool& toWhat);
+  static bool bitGet(const char& input,const int& position);
+  static int getPossition(const char& input);
 public:
   Cryptor();
   std::string encrypt(std::string input,std::string key);

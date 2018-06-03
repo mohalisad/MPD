@@ -15,12 +15,12 @@ int parseInt(std::string input){
     }
     return isItNegative?-number:number;
 }
-std::string intToString(int input){
+std::string intToString(const int& input){
     std::ostringstream myCustomStreamString;
     myCustomStreamString<<input;
     return myCustomStreamString.str();
 }
-std::string charToString(char input){
+std::string charToString(const char& input){
   char t[]={input,'\0'};
   return std::string(t);
 }
