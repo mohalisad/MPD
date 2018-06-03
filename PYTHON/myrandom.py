@@ -1,7 +1,8 @@
 from hashlib import sha256 as libsha256
+
 def sha256(strinp):
         return libsha256(strinp.encode()).hexdigest()
-class MyRandom:
+class MyRandom(object):
         BASE = 10
         LENGTH = 8
         MAX_STATE = 100000
