@@ -29,6 +29,7 @@ class Entry(object):
         self.__number = int(tokens[0])
         self.__date = Date(tokens[1])
         self.__text = Entry.__c.decrypt(tokens[2], Entry.__KEY)
+        self.__state = EntryState.DECRYPTED;
     def recrypt(self,newKey):
         if self.__state == EntryState.UNDECRYPTED:
             self.__decrypt()

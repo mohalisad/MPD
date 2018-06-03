@@ -47,6 +47,7 @@ public class Entry {
         number = Integer.parseInt(tokens[0]);
         date = new Date(tokens[1]);
         text = c.decrypt(tokens[2], KEY);
+        state= EntryState.DECRYPTED;
     }
     public void recrypt(String newKey) throws Exception
     {
