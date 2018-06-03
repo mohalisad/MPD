@@ -21,7 +21,7 @@ public class Cryptor {
     private final static int SALT_LENGTH = 16;
     private final static double MULTIPLY = 1.2;
     private final static int DISORDER_RATE = 6;
-    MyRandom r=new MyRandom (Date.now());
+    private MyRandom r=new MyRandom (Date.now());
     private String randomString(int length)
     {
         String retu="";

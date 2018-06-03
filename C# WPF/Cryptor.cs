@@ -13,7 +13,7 @@ namespace MPD
         private const int SALT_LENGTH = 16;
         private const double MULTIPLY = 1.2;
         private const int DISORDER_RATE = 6;
-        MyRandom r=new MyRandom (Date.now());
+        private MyRandom r=new MyRandom (Date.now());
         private string randomString(int length)
         {
             string retu="";
