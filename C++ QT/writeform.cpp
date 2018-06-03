@@ -6,6 +6,7 @@
 #include "codeassist.h"
 #include "mainwindow.h"
 #include "digitvalidator.h"
+#include "exception.h"
 
 WriteForm::WriteForm(QWidget *parent) :
     QWidget(parent),
@@ -71,12 +72,16 @@ void WriteForm::on_dateNowButton_clicked()
 
 void WriteForm::on_dateNextButton_clicked()
 {
-    ui->date->setText(Date(getDate().toStdString()).next().toString().c_str());
+    try{
+        ui->date->setText(Date(getDate().toStdString()).next().toString().c_str());
+    }catch(Exception){}
 }
 
 void WriteForm::on_dateBeforeButton_clicked()
 {
-    ui->date->setText(Date(getDate().toStdString()).prev().toString().c_str());
+    try{
+        ui->date->setText(Date(getDate().toStdString()).prev().toString().c_str());
+    }catch(Exception){}
 }
 
 void WriteForm::on_autoincbut_clicked()

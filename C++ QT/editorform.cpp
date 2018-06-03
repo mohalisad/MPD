@@ -3,6 +3,7 @@
 #include "uiassist.h"
 #include "digitvalidator.h"
 #include "date.h"
+#include "exception.h"
 
 EditorForm::EditorForm(int entryNumber,int suggestNumber,QString date,QString text,ReadForm *parent) :
     QWidget(0),
@@ -59,10 +60,14 @@ void EditorForm::on_okBut_clicked()
 
 void EditorForm::on_dateNextButton_clicked()
 {
-    ui->date->setText(Date(getDate().toStdString()).next().toString().c_str());
+    try{
+        ui->date->setText(Date(getDate().toStdString()).next().toString().c_str());
+    }catch(Exception){}
 }
 
 void EditorForm::on_dateBeforeButton_clicked()
 {
-    ui->date->setText(Date(getDate().toStdString()).prev().toString().c_str());
+    try{
+        ui->date->setText(Date(getDate().toStdString()).prev().toString().c_str());
+    }catch(Exception){}
 }
