@@ -31,7 +31,7 @@ public class Cryptor {
         }
         return retu;
     }
-    private int[] makeDisorderMoves(int length, String key)
+    private static int[] makeDisorderMoves(int length, String key)
     {
         int loopCount = DISORDER_RATE * length * 2;
         int[] arr = new int[loopCount];
@@ -42,7 +42,7 @@ public class Cryptor {
         }
         return arr;
     }
-    private int[] makeDisorderArray(int length, int[] disorderMoves)
+    private static int[] makeDisorderArray(int length, int[] disorderMoves)
     {
         int c;
         int loopCount = DISORDER_RATE * length * 2;
@@ -59,7 +59,7 @@ public class Cryptor {
         }
         return ret;
     }
-    private int bitSet(int input, int position, boolean toWhat)
+    private static int bitSet(int input, int position, boolean toWhat)
     {
         int pow2 = 1;
         for (int i = 0; i < position; i++) pow2 *= 2;
@@ -73,13 +73,13 @@ public class Cryptor {
             return input & (63 - pow2);
         }
     }
-    private boolean bitGet(int input, int position)
+    private static boolean bitGet(int input, int position)
     {
         int pow2 = 1;
         for (int i = 0; i < position; i++) pow2 *= 2;
         return (input & pow2)!=0;
     }
-    private int getPossition(char input)
+    private static int getPossition(char input)
     {
         return _KEY.indexOf(input);
     }

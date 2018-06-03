@@ -23,7 +23,7 @@ namespace MPD
             }
             return retu;
         }
-        private int[] makeDisorderMoves(int length, string key)
+        private static int[] makeDisorderMoves(int length, string key)
         {
             int loopCount = DISORDER_RATE * length * 2;
             int[] arr = new int[loopCount];
@@ -34,7 +34,7 @@ namespace MPD
             }
             return arr;
         }
-        private int[] makeDisorderArray(int length, int[] disorderMoves)
+        private static int[] makeDisorderArray(int length, int[] disorderMoves)
         {
             int c;
             int loopCount = DISORDER_RATE * length * 2;
@@ -51,7 +51,7 @@ namespace MPD
             }
             return ret;
         }
-        private int bitSet(int input, int position, bool toWhat)
+        private static int bitSet(int input, int position, bool toWhat)
         {
             int pow2 = 1;
             for (int i = 0; i < position; i++) pow2 *= 2;
@@ -65,13 +65,13 @@ namespace MPD
                 return input & (63 - pow2);
             }
         }
-        private bool bitGet(int input, int position)
+        private static bool bitGet(int input, int position)
         {
             int pow2 = 1;
             for (int i = 0; i < position; i++) pow2 *= 2;
             return (input & pow2)!=0;
         }
-        private int getPossition(char input)
+        private static int getPossition(char input)
         {
             return _KEY.IndexOf(input);
         }
