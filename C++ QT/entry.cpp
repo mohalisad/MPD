@@ -29,7 +29,7 @@ void Entry::encrypt(std::string key){
 #if TAG_MODE==1
     hash= c.encrypt("<entry>"+intToString(number)+"</entry><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>",key);
 #else
-    hash= c.encrypt(intToString(number)+" "+date->toString()+" "+c.encrypt(text,KEY),key);
+    hash= c.encrypt(c.encrypt(text,KEY)+" "+date->toString()+" "+intToString(number),key);
 #endif
     state=ES_ENCRYPTED;
 }
@@ -42,9 +42,9 @@ void Entry::decrypt(){
 #else
     StringTokenizer tokens(c.decrypt(hash,userKey)," ");
     if(tokens.size()!=3)throw Exception ("Decryption cannot be done");
-    number=parseInt(tokens[0]);
+    text=c.decrypt(tokens[0],KEY);
     date=new Date(tokens[1]);
-    text=c.decrypt(tokens[2],KEY);
+    number=parseInt(tokens[2]);
 #endif
     state=ES_DECRYPTED;
 }

@@ -18,7 +18,7 @@ class Entry(object):
             self.__text=t
             self.__state=EntryState.UNENCRYPTED
     def __encrypt(self,key):
-        self.__hash = c.encrypt(self.__number + " " + self.__date.toString() + " " + Entry.__c.encrypt(self.__text, Entry.__KEY), key)
+        self.__hash = c.encrypt(Entry.__c.encrypt(self.__text, Entry.__KEY) + " " + self.__date.toString() + " " + self.__number, key)
         self.__state = EntryState.ENCRYPTED
     def __encrypt(self):
         selfEntry.__encrypt(userKey)
@@ -26,9 +26,9 @@ class Entry(object):
         tokens = Entry.__c.decrypt(self.__hash,Entry.userKey).split()
         if len(tokens) != 3:
             raise Exception("Decryption cannot be done")
-        self.__number = int(tokens[0])
+        self.__text = Entry.__c.decrypt(tokens[0], Entry.__KEY)
         self.__date = Date(tokens[1])
-        self.__text = Entry.__c.decrypt(tokens[2], Entry.__KEY)
+        self.__number = int(tokens[2])
         self.__state = EntryState.DECRYPTED;
     def recrypt(self,newKey):
         if self.__state == EntryState.UNDECRYPTED:

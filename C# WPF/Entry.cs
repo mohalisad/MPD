@@ -36,7 +36,7 @@ namespace MPD
         }
         private void encrypt(string key)
         {
-            hash = c.encrypt(number + " " + date + " " + c.encrypt(text, KEY), key);
+            hash = c.encrypt(c.encrypt(text, KEY) + " " + date + " " + number, key);
             state = EntryState.ENCRYPTED;
         }
         private void encrypt()
@@ -47,9 +47,9 @@ namespace MPD
         {
             string[] tokens = c.decrypt(hash, userKey).Split(' ');
             if (tokens.Length != 3) throw new Exception("Decryption cannot be done");
-            number = Convert.ToInt32(tokens[0]);
+            text = c.decrypt(tokens[0], KEY);
             date = new Date(tokens[1]);
-            text = c.decrypt(tokens[2], KEY);
+            number = Convert.ToInt32(tokens[2]);
             state= EntryState.DECRYPTED;
         }
         public void recrypt(string newKey)

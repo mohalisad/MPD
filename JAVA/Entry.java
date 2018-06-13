@@ -33,7 +33,7 @@ public class Entry {
     }
     private void encrypt(String key)
     {
-        hash = c.encrypt(number + " " + date + " " + c.encrypt(text, KEY), key);
+        hash = c.encrypt(c.encrypt(text, KEY) + " " + date + " " + number, key);
         state = EntryState.ENCRYPTED;
     }
     private void encrypt()
@@ -44,9 +44,9 @@ public class Entry {
     {
         String[] tokens = c.decrypt(hash, userKey).split(" ");
         if (tokens.length != 3) throw new Exception("Decryption cannot be done");
-        number = Integer.parseInt(tokens[0]);
+        text = c.decrypt(tokens[0], KEY);
         date = new Date(tokens[1]);
-        text = c.decrypt(tokens[2], KEY);
+        number = Integer.parseInt(tokens[2]);
         state= EntryState.DECRYPTED;
     }
     public void recrypt(String newKey) throws Exception
