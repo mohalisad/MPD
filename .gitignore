@@ -1,4 +1,6 @@
 /build*
 /JAVA/MPD/nbproject/private/
 /JAVA/MPD/build/
+/.idea/
+/venv/
 *.DS_Store
