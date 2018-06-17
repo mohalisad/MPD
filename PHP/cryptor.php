@@ -51,7 +51,7 @@ class Cryptor {
         for ($i = 0; $i < $position; $i++) $pow2 *= 2;
         if ((($input & $pow2) != 0) == $toWhat) return $input;
         if ($toWhat) return $input | $pow2; else
-            return $input & (63 - $pow2);
+            return $input & (255 - $pow2);
     }
 
     private static function bitGet($input, $position) {

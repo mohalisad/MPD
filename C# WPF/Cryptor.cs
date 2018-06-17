@@ -62,7 +62,7 @@ namespace MPD
             }
             else
             {
-                return input & (63 - pow2);
+                return input & (255 - pow2);
             }
         }
         private static bool bitGet(int input, int position)

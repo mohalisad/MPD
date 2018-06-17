@@ -62,7 +62,7 @@ public class Cryptor {
         if (toWhat) {
             return input | pow2;
         } else {
-            return input & (63 - pow2);
+            return input & (255 - pow2);
         }
     }
 
