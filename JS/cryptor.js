@@ -1,10 +1,19 @@
 var random = require("./random.js");
+var mydate = require("./mydate");
 
 const _KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?";
 const _KEY_LENGTH = 64;
 const SALT_LENGTH = 16;
 const MULTIPLY = 1.2;
 const DISORDER_RATE = 6;
+
+function encode_utf8(s) {
+    return unescape(encodeURIComponent(s));
+}
+
+function decode_utf8(s) {
+    return decodeURIComponent(escape(s));
+}
 
 function makeDisorderMoves(length, key) {
     var loopCount = DISORDER_RATE * length * 2;
@@ -50,7 +59,7 @@ function getPossition(input) {
 
 class Cryptor {
     constructor() {
-        this.r = new random.Random("salam");
+        this.r = new random.Random(mydate.MyDate.now());
     }
 
     randomString(length) {
@@ -63,7 +72,7 @@ class Cryptor {
 
     encrypt(_input, key) {
         var retu = "", salt, disorderArray, disorderMoves, chars, input, length, pointer;
-        input = _input;
+        input = encode_utf8(_input);
         pointer = 0;
         length = parseInt(MULTIPLY * (input.length + 1) * 8);
         length = length + 6 - length % 6;
@@ -115,11 +124,10 @@ class Cryptor {
             if (temp == 0) break;
             retchars += String.fromCharCode(temp);
         }
-        return retchars;
+        return decode_utf8(retchars);
     }
 }
 
-var c = new Cryptor();
-var e = c.encrypt("asdrwepiqd", "123");
-console.log(e);
-console.log(c.decrypt(e, "123"));
+module.exports = {
+    Cryptor: Cryptor
+};
