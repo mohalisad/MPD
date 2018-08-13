@@ -67,7 +67,6 @@ std::string readAllFromFile(std::string address){
   return retu;
 }
 void writeInFile(std::string address,std::string text){
-  std::string line,retu;
   std::ofstream ofs(address.c_str());
   ofs<<text;
 }
