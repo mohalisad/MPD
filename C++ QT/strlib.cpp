@@ -20,6 +20,18 @@ std::string intToString(const int& input){
     myCustomStreamString<<input;
     return myCustomStreamString.str();
 }
+std::string intToStringSized(const int& input, int fixedSize){
+    std::string ret;
+    ret = intToString(input);
+    return multiString("0",fixedSize - (int)ret.size()) + ret;
+}
+std::string multiString(std::string input , int multi){
+    std::string ret;
+    for(int i=0;i<multi;i++){
+        ret += input;
+    }
+    return ret;
+}
 std::string charToString(const char& input){
   char t[]={input,'\0'};
   return std::string(t);

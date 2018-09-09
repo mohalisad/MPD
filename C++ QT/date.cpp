@@ -115,7 +115,7 @@ Date Date::next(){
 }
 std::string Date::toString(){
     std::string retu;
-    retu= intToString(year) + "/"+intToString(month)+"/"+intToString(day);
+    retu= intToString(year) + "/"+intToStringSized(month,2)+"/"+intToStringSized(day,2);
     return retu;
 }
 std::string Date::getDayOfWeek(){
@@ -147,5 +147,5 @@ std::string Date::clock(){
     second=now%60;
     minute=(now/60)%60;
     hour=(now/3600)%24;
-    return intToString(hour)+":"+intToString(minute)+":"+intToString(second);
+    return intToStringSized(hour,2)+":"+intToStringSized(minute,2)+":"+intToStringSized(second,2);
 }

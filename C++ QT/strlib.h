@@ -2,6 +2,8 @@
 
 int parseInt(std::string input);
 std::string intToString(const int& input);
+std::string intToStringSized(const int& input, int fixedSize);
+std::string multiString(std::string input , int multi);
 std::string charToString(const char& input);
 std::string subFromBeg(std::string input,int size);
 std::string subFromEnd(std::string input,int size);
