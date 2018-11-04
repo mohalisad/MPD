@@ -6,6 +6,7 @@
 #include "cryptor.h"
 
 enum EntryState{ES_UNDECRYPTED,ES_DECRYPTED,ES_ENCRYPTED,ES_UNENCRYPTED};
+//enum PersonState{PS_AFSORDE,PS_}
 
 class Entry{
 private:
