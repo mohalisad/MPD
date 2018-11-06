@@ -10,6 +10,9 @@ void Diary::readFromText(std::string input){
 void Diary::addEntry(int num,Date *d,std::string t){
     v.push_back(new Entry(num,d,t));
 }
+void Diary::addEntry(int num,Date *d,std::string t,PersonState mood){
+    v.push_back(new Entry(num,d,t,mood));
+}
 std::string Diary::getEncrypted(){
     std::string retu;
     for(unsigned int i=0;i<v.size();i++)retu+=v[i]->getHash()+"\n";

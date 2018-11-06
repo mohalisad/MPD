@@ -20,6 +20,14 @@ Entry::Entry(int num,Date *d,std::string t){
     state=ES_UNENCRYPTED;
 }
 
+Entry::Entry(int num,Date *d,std::string t,PersonState mood){
+    number = num;
+    date=d;
+    text=t;
+    this->mood = mood;
+    state=ES_UNENCRYPTED;
+}
+
 Entry::Entry(std::string input){
     state=ES_UNDECRYPTED;
     hash=input;
@@ -29,7 +37,7 @@ void Entry::encrypt(std::string key){
 #if TAG_MODE==1
     hash= c.encrypt("<entry>"+intToString(number)+"</entry><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>",key);
 #else
-    hash= c.encrypt(c.encrypt(text,KEY)+" "+date->toString()+" "+intToString(number),key);
+    hash= c.encrypt(c.encrypt(text,KEY)+" "+date->toString()+" "+intToString(number)+" "+intToString(mood),key);
 #endif
     state=ES_ENCRYPTED;
 }
@@ -41,10 +49,14 @@ void Entry::decrypt(){
     text=c.decrypt(getTag(unhashed,"text"),KEY);
 #else
     StringTokenizer tokens(c.decrypt(hash,userKey)," ");
-    if(tokens.size()!=3)throw Exception ("Decryption cannot be done");
+    if(tokens.size()!=3 && tokens.size()!=4)throw Exception ("Decryption cannot be done");
     text=c.decrypt(tokens[0],KEY);
     date=new Date(tokens[1]);
     number=parseInt(tokens[2]);
+    if(tokens.size()==4)
+        mood=parseInt(tokens[2]);
+    else
+        mood=PS_NOMOOD;
 #endif
     state=ES_DECRYPTED;
 }
@@ -68,6 +80,9 @@ int Entry::getNumber(){
     if(state==ES_UNDECRYPTED)decrypt();
     return number;
 }
+PersonState Entry::getMood(){
+    return mood;
+}
 void Entry::setText(std::string input){
     text=input;
     state=ES_UNENCRYPTED;
@@ -78,5 +93,9 @@ void Entry::setDate(std::string input){
 }
 void Entry::setNumber(int input){
     number=input;
+    state=ES_UNDECRYPTED;
+}
+void Entry::setMood(PersonState mood){
+    this->mood = mood;
     state=ES_UNDECRYPTED;
 }

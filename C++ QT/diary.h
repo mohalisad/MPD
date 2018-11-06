@@ -11,6 +11,7 @@ private:
 public:
   void readFromText(std::string input);
   void addEntry(int num,Date *d,std::string t);
+  void addEntry(int num,Date *d,std::string t,PersonState mood);
   std::string getEncrypted();
   Entry* operator[](int input);
   std::vector<Entry*>::size_type size();
