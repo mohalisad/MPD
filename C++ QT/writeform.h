@@ -37,6 +37,7 @@ private:
     QString getNumber();
     QString getDate();
     QString getText();
+    PersonState getMood();
 };
 
 #endif // WRITEFORM_H

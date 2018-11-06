@@ -12,9 +12,9 @@ class EditorForm : public QWidget
 {
     Q_OBJECT
 signals:
-    void formOK(int number,QString date,QString text);
+    void formOK(int number,QString date,QString text,PersonState mood);
 public:
-    explicit EditorForm(int entryNumber,int suggestNumber,QString date,QString text,ReadForm *parent);
+    explicit EditorForm(int entryNumber,int suggestNumber,QString date,QString text,PersonState mood,ReadForm *parent);
     ~EditorForm();
 private slots:
     void on_suggestNumberBut_clicked();
@@ -34,6 +34,8 @@ private:
     QString getNumber();
     QString getDate();
     QString getText();
+    PersonState getMood();
+    void setMood(PersonState mood);
 };
 
 #endif // EDITORFORM_H

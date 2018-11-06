@@ -34,11 +34,12 @@ ReadForm::ReadForm(QWidget *parent) :
 
     refreshUI();
 }
-void ReadForm::entryEdit(int number,QString date,QString text){
+void ReadForm::entryEdit(int number,QString date,QString text,PersonState mood){
     isChanged=true;
     diary[index]->setNumber(number);
     diary[index]->setDate(date.toStdString());
     diary[index]->setText(text.toStdString());
+    diary[index]->setMood(mood);
     refreshUI();
 }
 void ReadForm::setButtonDisable()
@@ -75,6 +76,7 @@ void ReadForm::refreshUI(){
             ui->number->setText(QString::number(diary[index]->getNumber()));
             ui->indexNumber->setText(QString::number(index+1)+"/"+QString::number(diary.size()));
             ui->textBrowser->setHtml(UIAssist::justify(diary[index]->getText().c_str()));
+            ui->mood->setText(get_moodstr(diary[index]->getMood()).c_str());
         }catch(Exception ex){
             QMessageBox msg;
             msg.setFont(UIAssist::yekan());
@@ -114,7 +116,7 @@ void ReadForm::on_goButton_clicked()
 
 void ReadForm::on_editBut_clicked()
 {
-    EditorForm *ef=new EditorForm(diary[index]->getNumber(),index+1,diary[index]->getDate().c_str(),diary[index]->getText().c_str(),this);
+    EditorForm *ef=new EditorForm(diary[index]->getNumber(),index+1,diary[index]->getDate().c_str(),diary[index]->getText().c_str(),diary[index]->getMood(),this);
     ef->show();
     hide();
 }

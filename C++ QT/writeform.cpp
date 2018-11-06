@@ -38,6 +38,17 @@ QString WriteForm::getDate(){
 QString WriteForm::getText(){
     return ui->textEdit->toPlainText();
 }
+PersonState WriteForm::getMood(){
+    if(ui->sadeRadio->isChecked())return PS_SADE;
+    if(ui->tajobRadio->isChecked())return PS_TAJOB;
+    if(ui->afsordeRadio->isChecked())return PS_AFSORDE;
+    if(ui->asabiRadio->isChecked())return PS_ASABI;
+    if(ui->khkhoshalRadio->isChecked())return PS_KHKHOSHAL;
+    if(ui->khoshalRadio->isChecked())return PS_KHOSHAL;
+    if(ui->narahatRadio->isChecked())return PS_NARAHAT;
+    if(ui->khnarahatRadio->isChecked())return PS_KHNARAHAT;
+    return PS_SADE;
+}
 
 
 void WriteForm::on_cancelBut_clicked()
@@ -54,10 +65,9 @@ void WriteForm::on_okBut_clicked()
     mw->show();
     close();
 }
-
 void WriteForm::on_nextBut_clicked()
 {
-    diary.addEntry(getNumber().toInt(),new Date(getDate().toStdString()),getText().toStdString());
+    diary.addEntry(getNumber().toInt(),new Date(getDate().toStdString()),getText().toStdString(),getMood());
     on_dateNextButton_clicked();
     on_autoincbut_clicked();
     ui->textEdit->setText("");

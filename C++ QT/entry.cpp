@@ -17,14 +17,15 @@ Entry::Entry(int num,Date *d,std::string t){
     number = num;
     date=d;
     text=t;
+    this->mood = PS_NOMOOD;
     state=ES_UNENCRYPTED;
 }
 
-Entry::Entry(int num,Date *d,std::string t,PersonState mood){
+Entry::Entry(int num,Date *d,std::string t,PersonState _mood){
     number = num;
     date=d;
     text=t;
-    this->mood = mood;
+    this->mood = _mood;
     state=ES_UNENCRYPTED;
 }
 
@@ -54,7 +55,7 @@ void Entry::decrypt(){
     date=new Date(tokens[1]);
     number=parseInt(tokens[2]);
     if(tokens.size()==4)
-        mood=parseInt(tokens[2]);
+        mood=parseInt(tokens[3]);
     else
         mood=PS_NOMOOD;
 #endif
@@ -93,9 +94,31 @@ void Entry::setDate(std::string input){
 }
 void Entry::setNumber(int input){
     number=input;
-    state=ES_UNDECRYPTED;
+    state=ES_UNENCRYPTED;
 }
-void Entry::setMood(PersonState mood){
-    this->mood = mood;
-    state=ES_UNDECRYPTED;
+void Entry::setMood(PersonState _mood){
+    this->mood = _mood;
+    state=ES_UNENCRYPTED;
+}
+
+std::string get_moodstr(int mood){
+    switch (mood) {
+    case PS_AFSORDE:
+        return "افسرده";
+    case PS_ASABI:
+        return "عصبانی";
+    case PS_TAJOB:
+        return "متعجب";
+    case PS_KHKHOSHAL:
+        return "خیلی خوشحال";
+    case PS_KHOSHAL:
+        return "خوشحال";
+    case PS_SADE:
+        return "معمولی";
+    case PS_NARAHAT:
+        return "ناراحت";
+    case PS_KHNARAHAT:
+        return "خیلی ناراحت";
+    }
+    return "_";
 }

@@ -16,7 +16,7 @@ public:
     explicit ReadForm(QWidget *parent = 0);
     ~ReadForm();
 public slots:
-    void entryEdit(int number,QString date,QString text);
+    void entryEdit(int number,QString date,QString text,PersonState mood);
 private slots:
     void on_prevBut_clicked();
 

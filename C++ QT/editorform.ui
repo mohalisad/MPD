@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>450</height>
+    <width>850</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>فرم ویرایش</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::RightToLeft</enum>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,3,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,2,0">
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="layoutDirection">
@@ -75,6 +75,77 @@
            <widget class="QPushButton" name="dateNextButton">
             <property name="text">
              <string>بعد</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,1">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QRadioButton" name="sadeRadio">
+            <property name="text">
+             <string>معمولی</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="asabiRadio">
+            <property name="text">
+             <string>عصبانی</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="tajobRadio">
+            <property name="text">
+             <string>متعجب</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="afsordeRadio">
+            <property name="text">
+             <string>افسرده</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QRadioButton" name="khkhoshalRadio">
+            <property name="text">
+             <string>خیلی خوشحال</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="khoshalRadio">
+            <property name="text">
+             <string>خوشحال</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="narahatRadio">
+            <property name="text">
+             <string>ناراحت</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="khnarahatRadio">
+            <property name="text">
+             <string>خیلی ناراحت</string>
             </property>
            </widget>
           </item>

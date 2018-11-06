@@ -46,4 +46,6 @@ public:
   void setMood(PersonState mood);
 };
 
+std::string get_moodstr(int mood);
+
 #endif
