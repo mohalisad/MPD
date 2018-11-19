@@ -7,7 +7,6 @@
 class UIAssist
 {
 private:
-    UIAssist();
     static bool yekanSet;
     static int yekanID;
     static QString persianNumbers;

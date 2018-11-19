@@ -4,7 +4,6 @@
 #include "exception.h"
 
 #define KEY "entry_key1234"
-#define TAG_MODE 0
 
 Cryptor Entry::c;
 std::string Entry::userKey;
@@ -35,20 +34,10 @@ Entry::Entry(std::string input){
 }
 
 void Entry::encrypt(std::string key){
-#if TAG_MODE==1
-    hash= c.encrypt("<entry>"+intToString(number)+"</entry><date>"+date->toString()+"</date><text>"+c.encrypt(text,KEY)+"</text>",key);
-#else
     hash= c.encrypt(c.encrypt(text,KEY)+" "+date->toString()+" "+intToString(number)+" "+intToString(mood),key);
-#endif
     state=ES_ENCRYPTED;
 }
 void Entry::decrypt(){
-#if TAG_MODE==1
-    std::string unhashed=c.decrypt(hash,userKey);
-    number=parseInt(getTag(unhashed,"entry"));
-    date=new Date(getTag(unhashed,"date"));
-    text=c.decrypt(getTag(unhashed,"text"),KEY);
-#else
     StringTokenizer tokens(c.decrypt(hash,userKey)," ");
     if(tokens.size()!=3 && tokens.size()!=4)throw Exception ("Decryption cannot be done");
     text=c.decrypt(tokens[0],KEY);
@@ -58,7 +47,6 @@ void Entry::decrypt(){
         mood=parseInt(tokens[3]);
     else
         mood=PS_NOMOOD;
-#endif
     state=ES_DECRYPTED;
 }
 void Entry::recrypt(std::string newKey) {

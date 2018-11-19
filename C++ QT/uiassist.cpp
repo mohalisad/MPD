@@ -13,8 +13,6 @@ int UIAssist::yekanID;
 QString UIAssist::persianNumbers(PERSIAN_NUMBERS);
 QString UIAssist::englishNumbers(ENGLISH_NUMBERS);
 
-UIAssist::UIAssist(){}
-
 QFont UIAssist::yekan(){
     int id;
     if(!yekanSet){
