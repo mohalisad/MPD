@@ -11,7 +11,7 @@ time_t getLocalTime(float timezone){
     return now;
 }
 
-Date Date::clone(){
+Date Date::clone() const{
     Date d;
     d.dayOfWeek=dayOfWeek;
     d.day=day;
@@ -37,9 +37,24 @@ void Date::setToNow(float timezone){
     }
     dayOfWeek=(5+now)%7;
 }
-bool Date::isItKabise(){
+int Date::yearLength(int year) const{
     int arr[]={1,5,9,13,17,22,26,30};
-    return getIndex<int>(arr,8,year%33)!=-1;
+    return getIndex<int>(arr,8,year%33)!=-1?366:365;
+}
+int Date::monthLength(int year,int month) const{
+    if(month<7)return 31;
+    if(month<12||yearLength(year) == 366)return 30;
+    return 29;
+}
+int Date::daysFromStart() const{
+    int days = day;
+    for(int i=1;i<month;i++){
+        days+=monthLength(year,i);
+    }
+    return days;
+}
+int Date::daysToEnd() const{
+    return yearLength(year)-daysFromStart();
 }
 Date::Date(){
     setToNow(3.5);
@@ -61,64 +76,44 @@ Date::Date(std::string input){
 }
 void Date::goNext(){
     day++;
-    if(month<7){
-        if(day>31){
-            day=1;
-            month++;
+    if(day>monthLength(year,month)){
+        day = 1;
+        month++;
+        if(month>12){
+            month=1;
+            year++;
         }
-    }else{
-        if(month!=12||isItKabise()){
-            if(day>30){
-                day=1;
-                month++;
-            }
-        }else{
-            if(day>29){
-                day=1;
-                month++;
-            }
-        }
-    }
-    if(month>12){
-        month=1;
-        year++;
     }
     dayOfWeek=(dayOfWeek+1)%7;
 }
 void Date::goPrev(){
     day--;
     if(day==0){
-        day=31;
         month--;
-        if(month==0){
-            month=12;
+        if(month == 0){
+            month = 12;
             year--;
         }
-        if(month>6){
-            day--;
-        }
-        if(month==12&&!isItKabise()){
-            day--;
-        }
-        dayOfWeek=(dayOfWeek-1)%7;
+        day = monthLength(year,month);
     }
+    dayOfWeek=(dayOfWeek-1)%7;
 }
-Date Date::prev(){
+Date Date::prev() const{
     Date d=clone();
     d.goPrev();
     return d;
 }
-Date Date::next(){
+Date Date::next() const{
     Date d=clone();
     d.goNext();
     return d;
 }
-std::string Date::toString(){
+std::string Date::toString() const{
     std::string retu;
     retu= intToString(year) + "/"+intToStringSized(month,2)+"/"+intToStringSized(day,2);
     return retu;
 }
-std::string Date::getDayOfWeek(){
+std::string Date::getDayOfWeek() const{
     switch (dayOfWeek) {
     case 0:
         return "شنبه";
@@ -136,6 +131,42 @@ std::string Date::getDayOfWeek(){
         return "جمعه";
     }
     throw Exception("DayOfWeek is wrong");
+}
+bool Date::operator<(const Date &other)const{
+    if(this->year < other.year)return true;
+    else if(this->year > other.year)return false;
+    if(this->month < other.month)return true;
+    else if(this->month > other.month)return false;
+    if(this->day < other.day)return true;
+    else return false;
+}
+bool Date::operator>(const Date &other)const{
+    return other<(*this);
+}
+bool Date::operator==(const Date &other)const{
+    return other.day==this->day && other.month==this->month && other.day==this->day;
+}
+int  Date::operator-(const Date &other)const{
+    const Date *max,*min;
+    bool neg;
+    int dif;
+    if(this->year == other.year){
+        return this->daysFromStart()-other.daysFromStart();
+    }
+    if((*this)>other){
+        max = this;
+        min = &other;
+        neg = false;
+    }else{
+        max = &other;
+        min = this;
+        neg = true;
+    }
+    dif = min->daysToEnd()+max->daysFromStart();
+    for(int i=min->year+1;i<max->year;i++){
+        dif += yearLength(i);
+    }
+    return neg?-dif:dif;
 }
 std::string Date::now(){
     Date d;
